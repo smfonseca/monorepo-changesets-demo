@@ -21,11 +21,4 @@ jobs:
         run: npm install
 
       - name: Check for Changeset
-        run: npx changeset status --verbose
-        continue-on-error: true  # Allow the step to complete even if it fails to capture the output
-
-      - name: Verify Changeset
-        if: ${{ failure() }}
-        run: |
-          echo "Error: No changeset found in this pull request. Please add a changeset."
-          exit 1
+        run: changeset status --since=main
