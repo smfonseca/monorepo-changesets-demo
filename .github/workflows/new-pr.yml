@@ -10,22 +10,22 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
 
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 8.6.2
+          run_install: false
+
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
 
       - name: Check for Changeset
-        run: npx changeset status --verbose
-        continue-on-error: true  # Allow the step to complete even if it fails to capture the output
-
-      - name: Verify Changeset
-        if: ${{ failure() }}
-        run: |
-          echo "Error: No changeset found in this pull request. Please add a changeset."
-          exit 1
+        run: changeset status --since=main
