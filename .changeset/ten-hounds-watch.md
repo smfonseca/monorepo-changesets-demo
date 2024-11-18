@@ -2,4 +2,5 @@
 "@monorepo-changesets-demo/docs": patch
 ---
 
-add readme
+Add readme
+Test changesets with docs package
