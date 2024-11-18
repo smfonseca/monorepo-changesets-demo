@@ -1,0 +1,19 @@
+name: "New PR"
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - edited
+      - synchronize
+
+permissions:
+  pull-requests: read
+
+jobs:
+  main:
+    name: Check if changeset is present
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail if changeset is not present
+        run: changeset status --since=main
