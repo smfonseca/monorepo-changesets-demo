@@ -58,24 +58,35 @@ jobs:
         id: install-dependencies
         run: pnpm install
 
-      - name: 🏗️ Check for Changesets
-        run: |
-          pnpm changeset status || echo "No changeset found. If necessary, adding an empty changeset..."
-          pnpm changeset add --empty --message "Non-release changes [skip ci]" || true
+      # - name: 🏗️ Check for Changesets
+      #   run: |
+      #     pnpm changeset status || echo "No changeset found. If necessary, adding an empty changeset..."
+      #     pnpm changeset add --empty --message "Non-release changes [skip ci]" || true
+
+      - name: 🏗️ Preview Release
+        run: pnpm changeset status --verbose
+
 
       - name: 🏗️ Bump Version and Apply Changesets
         run: |
-          pnpm changeset status --verbose
           pnpm changeset version
+          updated_packages=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"name\":' {} | sed -E 's/.*\"name\": \"@monorepo-changesets-demo\/([^\"]+)\",/\\1/'" | tr '\n' ', ' | sed 's/, $//')
+          if [ -n "$updated_packages" ]; then
+            commit_message="chore(release): apply changesets to $updated_packages [skip ci]"
+          else
+            commit_message="chore(release): apply changesets [skip ci]"
+          fi
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "chore(release): apply changesets [skip ci]" || echo "No changes to commit"
+          git commit -m "$commit_message" || echo "No changes to commit"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # - name: 📦 Publish to npm
-      #   run: pnpm changeset publish
+      #   run: |
+            # pnpm changeset publish
+            # pnpm filter --no-private publish --access public --filter '!@monorepo-changesets-demo/docs'
       #   env:
       #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
