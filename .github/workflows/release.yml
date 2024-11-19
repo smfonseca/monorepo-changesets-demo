@@ -71,8 +71,9 @@ jobs:
         run: |
           pnpm changeset version
           updated_packages=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"name\":' {} | sed -E 's/.*\"name\": \"@monorepo-changesets-demo\/([^\"]+)\",/\\1/'" | tr '\n' ', ' | sed 's/, $//')
+          updated_versions=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"version\":' {} | sed -E 's/.*\"version\": \"([^\"]+)\",/\\1/'")
           if [ -n "$updated_packages" ]; then
-            commit_message="chore(release): apply changesets to $updated_packages [skip ci]"
+            commit_message="chore(release/$updated_packages): $updated_versions [skip ci]"
           else
             commit_message="chore(release): apply changesets [skip ci]"
           fi
