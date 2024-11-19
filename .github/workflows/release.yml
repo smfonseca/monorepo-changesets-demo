@@ -65,6 +65,7 @@ jobs:
 
       - name: 🏗️ Bump Version and Apply Changesets
         run: |
+          pnpm changeset status --verbose
           pnpm changeset version
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
