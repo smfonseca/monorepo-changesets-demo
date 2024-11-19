@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/components
 
+## 2.0.0
+
+### Major Changes
+
+- [#13](https://github.com/smfonseca/monorepo-changesets-demo/pull/13) [`34c42b5`](https://github.com/smfonseca/monorepo-changesets-demo/commit/34c42b5c7f4cd162fd8c0ab16f14e9d14fd42e29) Thanks [@smfonseca](https://github.com/smfonseca)! - test workflow
+
 ## 1.0.2
 
 ### Patch Changes
