@@ -1,66 +1,33 @@
-name: 🚀 Release
+name: Check for Changeset
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
-
-permissions:
-  contents: read # for checkout
-
-env:
-  GITHUB_TOKEN: ${{ secrets.CHANGESET_GH }}
-  # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
 
 jobs:
-  release:
-    name: 🚀 Release
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node-version: [lts/*]
-        pnpm-version: [latest]
-    runs-on: ${{ matrix.os }}
+  check-changeset:
+    runs-on: ubuntu-latest
+
     steps:
-      - name: ⬇️ Checkout
-        id: checkout
-        uses: actions/checkout@v2.3.3
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
-          token: ${{ env.GITHUB_TOKEN }}
           fetch-depth: 0
 
-      - name: 🟢 Setup node
-        id: setup-node
-        uses: actions/setup-node@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '18'
 
-      - name: 🥡 Setup pnpm
-        id: setup-pnpm
-        uses: pnpm/action-setup@v2.1.0
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
         with:
-          version: ${{ matrix.pnpm-version }}
+          version: 8.6.2
           run_install: false
 
-      - name: 🧩 Install Dependencies
-        id: install-dependencies
+      - name: Install dependencies
         run: pnpm install
 
-      - name: 🏗️ Bump Version and Create Release
-        run: pnpm changeset version
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # - name: 📦 Publish to npm
-      #   run: pnpm changeset publish
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: 📝 Push Changes Back to Main
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git push origin main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check for Changeset
+        run: pnpm changeset status --since origin/main
