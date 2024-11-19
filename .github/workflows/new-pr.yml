@@ -1,33 +1,66 @@
-name: Check for Changeset
+name: 🚀 Release
 
 on:
-  pull_request:
-    types: [opened, reopened, synchronize]
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read # for checkout
+
+env:
+  GITHUB_TOKEN: ${{ secrets.CHANGESET_GH }}
+  # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 jobs:
-  check-changeset:
-    runs-on: ubuntu-latest
-
+  release:
+    name: 🚀 Release
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [lts/*]
+        pnpm-version: [latest]
+    runs-on: ${{ matrix.os }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: ⬇️ Checkout
+        id: checkout
+        uses: actions/checkout@v2.3.3
         with:
+          token: ${{ env.GITHUB_TOKEN }}
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: 🟢 Setup node
+        id: setup-node
+        uses: actions/setup-node@v2
         with:
-          node-version: '18'
+          node-version: ${{ matrix.node-version }}
 
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
-        id: pnpm-install
+      - name: 🥡 Setup pnpm
+        id: setup-pnpm
+        uses: pnpm/action-setup@v2.1.0
         with:
-          version: 8.6.2
+          version: ${{ matrix.pnpm-version }}
           run_install: false
 
-      - name: Install dependencies
+      - name: 🧩 Install Dependencies
+        id: install-dependencies
         run: pnpm install
 
-      - name: Check for Changeset
-        run: pnpm changeset status --since origin/main
+      - name: 🏗️ Bump Version and Create Release
+        run: pnpm changeset version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # - name: 📦 Publish to npm
+      #   run: pnpm changeset publish
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📝 Push Changes Back to Main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
