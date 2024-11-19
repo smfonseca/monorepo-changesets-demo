@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/components
 
+## 2.1.0
+
+### Minor Changes
+
+- [#17](https://github.com/smfonseca/monorepo-changesets-demo/pull/17) [`74805bd`](https://github.com/smfonseca/monorepo-changesets-demo/commit/74805bdedbf5d6263274167ef9900ffa4fced9b8) Thanks [@smfonseca](https://github.com/smfonseca)! - push to main creates release test
+
 ## 2.0.0
 
 ### Major Changes

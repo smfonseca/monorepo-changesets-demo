@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/docs
 
+## 1.0.2
+
+### Patch Changes
+
+- [#17](https://github.com/smfonseca/monorepo-changesets-demo/pull/17) [`74805bd`](https://github.com/smfonseca/monorepo-changesets-demo/commit/74805bdedbf5d6263274167ef9900ffa4fced9b8) Thanks [@smfonseca](https://github.com/smfonseca)! - test a new release
+
 ## 1.0.1
 
 ### Patch Changes
