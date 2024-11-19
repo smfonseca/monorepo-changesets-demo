@@ -1,5 +1,13 @@
 # @monorepo-changesets-demo/docs
 
+## 1.0.3
+
+### Patch Changes
+
+- [#18](https://github.com/smfonseca/monorepo-changesets-demo/pull/18) [`a03e7cd`](https://github.com/smfonseca/monorepo-changesets-demo/commit/a03e7cdafe8feda7663d9296ea6a9d9d3bcbc5e6) Thanks [@smfonseca](https://github.com/smfonseca)! - test release
+
+- [#19](https://github.com/smfonseca/monorepo-changesets-demo/pull/19) [`e7e4997`](https://github.com/smfonseca/monorepo-changesets-demo/commit/e7e49979f755f13f10f702d07353bef1fd508878) Thanks [@smfonseca](https://github.com/smfonseca)! - test
+
 ## 1.0.2
 
 ### Patch Changes
