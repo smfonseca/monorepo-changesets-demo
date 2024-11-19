@@ -58,6 +58,11 @@ jobs:
         id: install-dependencies
         run: pnpm install
 
+      - name: 🏗️ Check for Changesets
+        run: |
+          pnpm changeset status || echo "No changeset found. If necessary, adding an empty changeset..."
+          pnpm changeset add --empty --message "Non-release changes [skip ci]" || true
+
       - name: 🏗️ Bump Version and Apply Changesets
         run: |
           pnpm changeset version
