@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/docs
 
+## 1.0.1
+
+### Patch Changes
+
+- [#10](https://github.com/smfonseca/monorepo-changesets-demo/pull/10) [`8db4386`](https://github.com/smfonseca/monorepo-changesets-demo/commit/8db4386268c867f0e4eae42522a4f0963181b200) Thanks [@smfonseca](https://github.com/smfonseca)! - test gh workflow
+
 ## 1.0.0
 
 ### Major Changes
