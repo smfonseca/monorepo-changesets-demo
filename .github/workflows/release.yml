@@ -61,10 +61,7 @@ jobs:
       - name: 🏗️ Bump Version and Apply Changesets
         run: |
           pnpm changeset version
-          echo "Updated package versions:"
-          for package in $(find . -name "package.json"); do
-            echo "Package: $(jq -r '.name' $package), Version: $(jq -r '.version' $package)"
-          done
+          pnpm changeset status
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .
