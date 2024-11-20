@@ -8,3 +8,4 @@ new change
 hey
 hey hey
 test freeze
+test patch bump
