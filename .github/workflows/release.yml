@@ -8,6 +8,7 @@ on:
 
 env:
   GITHUB_TOKEN: ${{ secrets.CHANGESET_GH }}
+  GITHUB_FREEZE: ${{ secrets.CODE_FREEZE }}
   # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 jobs:
@@ -67,16 +68,35 @@ jobs:
         run: pnpm changeset status --verbose
 
 
+      - name: 🏗️ Check Code Freeze
+        id: check-freeze
+        run: |
+          if [ "${{ env.GITHUB_FREEZE }}" = "true" ]; then
+            echo "Code freeze is active"
+            echo "freeze=true" >> $GITHUB_ENV
+          else
+            echo "Code freeze is not active"
+            echo "freeze=false" >> $GITHUB_ENV
+          fi
+
       - name: 🏗️ Bump Version and Apply Changesets
+        if: env.freeze == 'false'
         run: |
           pnpm changeset version
-          updated_packages=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"name\":' {} | sed -E 's/.*\"name\": \"@monorepo-changesets-demo\/([^\"]+)\",/\\1/'" | tr '\n' ', ' | sed 's/, $//')
+
+          updated_packages=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"name\":' {} | sed -E 's/.*\"name\": \"@monorepo-changesets-demo\/([^\"]+)\",/\\1/'")
           updated_versions=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"version\":' {} | sed -E 's/.*\"version\": \"([^\"]+)\",/\\1/'")
-          if [ -n "$updated_packages" ]; then
-            commit_message="chore(release/$updated_packages): $updated_versions [skip ci]"
+
+
+          packages_with_versions=$(paste -d@ <(echo "$updated_packages") <(echo "$updated_versions") | sed 's/@/: /' | tr '\n' ', ' | sed 's/, $//')
+
+
+          if [ -n "$packages_with_versions" ]; then
+            commit_message="chore(release): apply changesets to $packages_with_versions [skip ci]"
           else
             commit_message="chore(release): apply changesets [skip ci]"
           fi
+
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .
@@ -84,14 +104,25 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: 📦 Publish to npm
-      #   run: |
-            # pnpm changeset publish
-            # pnpm filter --no-private publish --access public --filter '!@monorepo-changesets-demo/docs'
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - name: 📝 Push Updated Files to Main
+        if: env.freeze == 'false'
         run: git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 📣 Open Release Pull Request
+        if: env.freeze == 'true'
+        uses: changesets/action@v1
+        with:
+          title: "chore(release): prepare release [freeze active]"
+          commit: "chore(release): apply changeset changes [skip ci]"
+          body: "Code freeze is active. This pull request contains the changes for the release."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Add `do-not-merge` Label
+        if: env.freeze == 'true'
+        run: |
+          gh pr edit $(gh pr list --state open --label "chore/release"): --add-label "do-not-merge"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
