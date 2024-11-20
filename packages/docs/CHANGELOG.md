@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/docs
 
+## 2.1.0
+
+### Minor Changes
+
+- [#24](https://github.com/smfonseca/monorepo-changesets-demo/pull/24) [`3aa4241`](https://github.com/smfonseca/monorepo-changesets-demo/commit/3aa42418e80ed8288e495def9f8fcc1f018c0c06) Thanks [@smfonseca](https://github.com/smfonseca)! - minor bump
+
 ## 2.0.1
 
 ### Patch Changes
