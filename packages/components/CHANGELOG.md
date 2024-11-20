@@ -1,5 +1,12 @@
 # @monorepo-changesets-demo/components
 
+## 2.3.0
+
+### Minor Changes
+
+- [#23](https://github.com/smfonseca/monorepo-changesets-demo/pull/23) [`db1e560`](https://github.com/smfonseca/monorepo-changesets-demo/commit/db1e560356ce004d771448ebc7124cc2c7f244a3) Thanks [@smfonseca](https://github.com/smfonseca)! - bump components
+  path docs
+
 ## 2.2.1
 
 ### Patch Changes
