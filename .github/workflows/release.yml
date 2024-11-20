@@ -120,10 +120,3 @@ jobs:
           commit: "chore(release): version packages 🦋 [skip ci]"
         env:
           GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
-
-      - name: Add `do-not-merge` Label
-        if: env.freeze == 'true'
-        run: |
-          gh pr edit $(gh pr list --state open --label "chore/release"): --add-label "do-not-merge"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
