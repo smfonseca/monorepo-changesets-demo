@@ -1,5 +1,15 @@
 # @monorepo-changesets-demo/docs
 
+## 3.0.0
+
+### Major Changes
+
+- [#26](https://github.com/smfonseca/monorepo-changesets-demo/pull/26) [`e8a8c38`](https://github.com/smfonseca/monorepo-changesets-demo/commit/e8a8c388c2ad099354253a4b5418c39a9a66ac05) Thanks [@smfonseca](https://github.com/smfonseca)! - test freeze (major bump)
+
+### Patch Changes
+
+- [#29](https://github.com/smfonseca/monorepo-changesets-demo/pull/29) [`2232183`](https://github.com/smfonseca/monorepo-changesets-demo/commit/2232183ae900bca237cb360ba92fbdb00940617f) Thanks [@smfonseca](https://github.com/smfonseca)! - test patch docs bump
+
 ## 2.1.0
 
 ### Minor Changes

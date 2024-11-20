@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/components
 
+## 2.4.0
+
+### Minor Changes
+
+- [#27](https://github.com/smfonseca/monorepo-changesets-demo/pull/27) [`81eca32`](https://github.com/smfonseca/monorepo-changesets-demo/commit/81eca32417d3fe3c91013126a28b1c2763d9d756) Thanks [@smfonseca](https://github.com/smfonseca)! - minor bump freeze
+
 ## 2.3.0
 
 ### Minor Changes
