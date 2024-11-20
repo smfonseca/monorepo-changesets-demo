@@ -5,3 +5,4 @@ Another change
 test
 testing
 test workflow
+minor bump freeze
