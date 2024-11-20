@@ -112,15 +112,14 @@ jobs:
 
       - name: 📣 Open Release Pull Request
         if: env.freeze == 'true'
-        id: changesets
-          uses: changesets/action@v1
-          with:
-            title: "chore(release): version packages 🦋"
-            publish: pnpm publish:packages
-            version: pnpm version:packages
-            commit: "chore(release): version packages 🦋 [skip ci]"
-          env:
-            GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+        uses: changesets/action@v1
+        with:
+          title: "chore(release): version packages 🦋"
+          publish: pnpm publish:packages
+          version: pnpm version:packages
+          commit: "chore(release): version packages 🦋 [skip ci]"
+        env:
+          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
 
       - name: Add `do-not-merge` Label
         if: env.freeze == 'true'
