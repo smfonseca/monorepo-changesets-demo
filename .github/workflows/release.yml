@@ -71,7 +71,6 @@ jobs:
       - name: 🏗️ Preview Release
         run: pnpm changeset status --verbose
 
-
       - name: 🏗️ Check Code Freeze
         id: check-freeze
         run: |
@@ -112,56 +111,62 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 🏗️ Bump Versions with Changesets
-        run: pnpm changeset version
+      # - name: 🏗️ Bump Versions with Changesets
+      #   run: pnpm changeset version
 
-      - name: 📣 Prepare Commit Message
-        run: |
-          # Check for changes in package.json files
-          changed_files=$(git diff --staged --name-only | grep "package.json" || true)
-          if [ -z "$changed_files" ]; then
-            echo "No changes detected in package.json files."
-            echo "commit_message=chore(release): version packages 🦋 [skip ci]" >> $GITHUB_ENV
-            exit 0
-          fi
+      # - name: 📣 Prepare Commit Message
+      #   run: |
+      #     # Check for changes in package.json files
+      #     changed_files=$(git diff --staged --name-only | grep "package.json" || true)
+      #     if [ -z "$changed_files" ]; then
+      #       echo "No changes detected in package.json files."
+      #       echo "commit_message=chore(release): version packages 🦋 [skip ci]" >> $GITHUB_ENV
+      #       exit 0
+      #     fi
 
-          # Extract updated package names and versions
-          updated_packages=""
-          updated_versions=""
+      #     # Extract updated package names and versions
+      #     updated_packages=""
+      #     updated_versions=""
 
-          while IFS= read -r file; do
-            package_name=$(grep '"name":' "$file" | sed -E 's/.*"name": "@monorepo-changesets-demo\/([^"]+)",/\1/' | tr -d '[:space:]')
-            package_version=$(grep '"version":' "$file" | sed -E 's/.*"version": "([^"]+)",/\1/' | tr -d '[:space:]')
+      #     while IFS= read -r file; do
+      #       package_name=$(grep '"name":' "$file" | sed -E 's/.*"name": "@monorepo-changesets-demo\/([^"]+)",/\1/' | tr -d '[:space:]')
+      #       package_version=$(grep '"version":' "$file" | sed -E 's/.*"version": "([^"]+)",/\1/' | tr -d '[:space:]')
 
-            if [ -n "$package_name" ] && [ -n "$package_version" ]; then
-              updated_packages+="$package_name\n"
-              updated_versions+="$package_version\n"
-            fi
-          done <<< "$changed_files"
+      #       if [ -n "$package_name" ] && [ -n "$package_version" ]; then
+      #         updated_packages+="$package_name\n"
+      #         updated_versions+="$package_version\n"
+      #       fi
+      #     done <<< "$changed_files"
 
-          # Combine packages and versions into a single string
-          packages_with_versions=$(paste -d: <(echo -e "$updated_packages") <(echo -e "$updated_versions") | tr '\n' ', ' | sed 's/, $//')
+      #     # Combine packages and versions into a single string
+      #     packages_with_versions=$(paste -d: <(echo -e "$updated_packages") <(echo -e "$updated_versions") | tr '\n' ', ' | sed 's/, $//')
 
-          # Debugging
-          echo "DEBUG: Updated Packages: $updated_packages"
-          echo "DEBUG: Updated Versions: $updated_versions"
-          echo "DEBUG: Packages with Versions: $packages_with_versions"
+      #     # Debugging
+      #     echo "DEBUG: Updated Packages: $updated_packages"
+      #     echo "DEBUG: Updated Versions: $updated_versions"
+      #     echo "DEBUG: Packages with Versions: $packages_with_versions"
 
-          # Generate the commit message
-          if [ -n "$packages_with_versions" ]; then
-            echo "commit_message=chore(release): $packages_with_versions [skip ci]" >> $GITHUB_ENV
-          else
-            echo "commit_message=chore(release): version packages 🦋 [skip ci]" >> $GITHUB_ENV
-          fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     # Generate the commit message
+      #     if [ -n "$packages_with_versions" ]; then
+      #       echo "commit_message=chore(release): $packages_with_versions [skip ci]" >> $GITHUB_ENV
+      #     else
+      #       echo "commit_message=chore(release): version packages 🦋 [skip ci]" >> $GITHUB_ENV
+      #     fi
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 📣 Open Release Pull Request
+      # - name: 📣 Open Release Pull Request
+      #   if: env.freeze == 'true'
+      #   uses: changesets/action@v1
+      #   with:
+      #     title: "chore(release): version packages 🦋"
+      #     version: pnpm version:packages
+      #     commit: ${{ env.commit_message }}
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Release Pull Request
         if: env.freeze == 'true'
         uses: changesets/action@v1
-        with:
-          title: "chore(release): version packages 🦋"
-          version: pnpm version:packages
-          commit: ${{ env.commit_message }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
