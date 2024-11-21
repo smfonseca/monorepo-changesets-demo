@@ -112,23 +112,24 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: 📣 Prepare Commit Message
+        if: env.freeze == 'true'
+        run: |
+          updated_packages=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"name\":' {} | sed -E 's/.*\"name\": \"@monorepo-changesets-demo\/([^\"]+)\",/\\1/' | tr -d '[:space:]'")
+          updated_versions=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"version\":' {} | sed -E 's/.*\"version\": \"([^\"]+)\",/\\1/' | tr -d '[:space:]'")
+          packages_with_versions=$(paste -d: <(echo "$updated_packages") <(echo "$updated_versions") | tr '\n' ', ' | sed 's/, $//')
+          if [ -n "$packages_with_versions" ]; then
+            echo "commit_message=chore(release): $packages_with_versions [skip ci]" >> $GITHUB_ENV
+          else
+            echo "commit_message=chore(release): version packages 🦋 [skip ci]" >> $GITHUB_ENV
+          fi
+
       - name: 📣 Open Release Pull Request
         if: env.freeze == 'true'
         uses: changesets/action@v1
         with:
           title: "chore(release): version packages 🦋"
-          # publish: pnpm publish:packages
           version: pnpm version:packages
-          commit: |
-            $(
-              updated_packages=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"name\":' {} | sed -E 's/.*\"name\": \"@monorepo-changesets-demo\/([^\"]+)\",/\\1/' | tr -d '[:space:]'")
-              updated_versions=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"version\":' {} | sed -E 's/.*\"version\": \"([^\"]+)\",/\\1/' | tr -d '[:space:]'")
-              packages_with_versions=$(paste -d: <(echo "$updated_packages") <(echo "$updated_versions") | tr '\n' ', ' | sed 's/, $//')
-              if [ -n "$packages_with_versions" ]; then
-                echo "chore(release): $packages_with_versions [skip ci]"
-              else
-                echo "chore(release): version packages 🦋 [skip ci]"
-              fi
-            )
+          commit: ${{ env.commit_message }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
