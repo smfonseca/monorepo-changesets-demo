@@ -168,5 +168,10 @@ jobs:
       - name: Create Release Pull Request
         if: env.freeze == 'true'
         uses: changesets/action@v1
+        with:
+          # title: "chore(release): version packages 🦋"
+          # publish: pnpm publish:packages
+          version: pnpm version:packages
+          # commit: "chore(release): version packages 🦋 [skip ci]"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
