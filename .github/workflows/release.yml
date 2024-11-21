@@ -115,15 +115,25 @@ jobs:
       - name: 📣 Prepare Commit Message
         if: env.freeze == 'true'
         run: |
-          updated_packages=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"name\":' {} | sed -E 's/.*\"name\": \"@monorepo-changesets-demo\/([^\"]+)\",/\\1/' | tr -d '[:space:]'")
-          updated_versions=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"version\":' {} | sed -E 's/.*\"version\": \"([^\"]+)\",/\\1/' | tr -d '[:space:]'")
+          # Check for changes in package.json files
+          changed_files=$(git diff --staged --name-only | grep "package.json")
+          if [ -z "$changed_files" ]; then
+            echo "No changes detected in package.json files."
+            echo "commit_message=chore(release): version packages 🦋 [skip ci]" >> $GITHUB_ENV
+            exit 0
+          fi
+
+          # Extract updated package names and versions
+          updated_packages=$(echo "$changed_files" | xargs -I {} sh -c "grep '\"name\":' {} | sed -E 's/.*\"name\": \"@monorepo-changesets-demo\/([^\"]+)\",/\\1/' | tr -d '[:space:]'")
+          updated_versions=$(echo "$changed_files" | xargs -I {} sh -c "grep '\"version\":' {} | sed -E 's/.*\"version\": \"([^\"]+)\",/\\1/' | tr -d '[:space:]'")
+
+          # Combine packages and versions into a single string
           packages_with_versions=$(paste -d: <(echo "$updated_packages") <(echo "$updated_versions") | tr '\n' ', ' | sed 's/, $//')
 
-          # Debugging: Log the generated values
+          # Generate the commit message
           echo "DEBUG: Updated Packages: $updated_packages"
           echo "DEBUG: Updated Versions: $updated_versions"
           echo "DEBUG: Packages with Versions: $packages_with_versions"
-
           if [ -n "$packages_with_versions" ]; then
             echo "commit_message=chore(release): $packages_with_versions [skip ci]" >> $GITHUB_ENV
           else
