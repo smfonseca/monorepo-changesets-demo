@@ -111,12 +111,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 🏗️ Bump Version and Apply Changesets
-        run: pnpm changeset version
-
       - name: 📝 Generate Commit Message
         id: generate_commit_message
         run: |
+          pnpm changeset version
+
           updated_packages=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"name\":' {} | sed -E 's/.*\"name\": \"([^\"]+)\",/\\1/'")
           updated_versions=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"version\":' {} | sed -E 's/.*\"version\": \"([^\"]+)\",/\\1/'")
           packages_with_versions=$(paste -d: <(echo "$updated_packages") <(echo "$updated_versions") | tr '\n' ', ' | sed 's/, $//')
