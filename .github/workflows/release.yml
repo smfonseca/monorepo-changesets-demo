@@ -84,12 +84,10 @@ jobs:
         run: |
           pnpm changeset version
 
-          updated_packages=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"name\":' {} | sed -E 's/.*\"name\": \"@monorepo-changesets-demo\/([^\"]+)\",/\\1/'")
-          updated_versions=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"version\":' {} | sed -E 's/.*\"version\": \"([^\"]+)\",/\\1/'")
+          updated_packages=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"name\":' {} | sed -E 's/.*\"name\": \"@monorepo-changesets-demo\/([^\"]+)\",/\\1/' | tr -d '[:space:]'")
+          updated_versions=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"version\":' {} | sed -E 's/.*\"version\": \"([^\"]+)\",/\\1/' | tr -d '[:space:]'")
 
-
-          packages_with_versions=$(paste -d@ <(echo "$updated_packages") <(echo "$updated_versions") | sed 's/@/: /' | tr '\n' ', ' | sed 's/, $//')
-
+          packages_with_versions=$(paste -d: <(echo "$updated_packages") <(echo "$updated_versions") | tr '\n' ', ' | sed 's/, $//')
 
           if [ -n "$packages_with_versions" ]; then
             commit_message="chore(release): apply changesets to $packages_with_versions [skip ci]"
@@ -117,6 +115,16 @@ jobs:
           title: "chore(release): version packages 🦋"
           publish: pnpm publish:packages
           version: pnpm version:packages
-          commit: "chore(release): version packages 🦋 [skip ci]"
+          commit: |
+            $(
+              updated_packages=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"name\":' {} | sed -E 's/.*\"name\": \"@monorepo-changesets-demo\/([^\"]+)\",/\\1/' | tr -d '[:space:]'")
+              updated_versions=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"version\":' {} | sed -E 's/.*\"version\": \"([^\"]+)\",/\\1/' | tr -d '[:space:]'")
+              packages_with_versions=$(paste -d: <(echo "$updated_packages") <(echo "$updated_versions") | tr '\n' ', ' | sed 's/, $//')
+              if [ -n "$packages_with_versions" ]; then
+                echo "chore(release): apply changesets to $packages_with_versions [skip ci]"
+              else
+                echo "chore(release): version packages 🦋 [skip ci]"
+              fi
+            )
         env:
-          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
