@@ -129,6 +129,7 @@ jobs:
         if: env.GITHUB_FREEZE == 'true'
         uses: changesets/action@v1
         with:
+          version: pnpm changeset version
           title: ${{ env.commit_message }}
           commit: ${{ env.commit_message }}
         env:
