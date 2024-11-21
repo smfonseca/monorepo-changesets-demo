@@ -117,7 +117,7 @@ jobs:
         uses: changesets/action@v1
         with:
           title: "chore(release): version packages 🦋"
-          publish: pnpm publish:packages
+          # publish: pnpm publish:packages
           version: pnpm version:packages
           commit: |
             $(
