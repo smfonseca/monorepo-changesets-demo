@@ -1,6 +1,9 @@
 {
   "name": "monorepo-changesets-demo",
-  "repository": "https://github.com/smfonseca/monorepo-changesets-demo.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smfonseca/monorepo-changesets-demo.git"
+  },
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -18,5 +21,9 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.9"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/smfonseca/monorepo-changesets-demo/issues"
+  },
+  "homepage": "https://github.com/smfonseca/monorepo-changesets-demo#readme"
 }

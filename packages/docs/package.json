@@ -1,5 +1,5 @@
 {
-  "name": "@monorepo-changesets-demo/docs",
+  "name": "@smfonseca/docs",
   "repository": "https://github.com/smfonseca/monorepo-changesets-demo.git",
   "version": "3.3.0",
   "publishConfig": {
