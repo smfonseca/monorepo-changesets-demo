@@ -1,5 +1,0 @@
----
-"@smfonseca/components": major
----
-
-test

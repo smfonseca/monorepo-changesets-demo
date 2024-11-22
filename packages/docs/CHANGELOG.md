@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/docs
 
+## 3.5.0
+
+### Minor Changes
+
+- [#47](https://github.com/smfonseca/monorepo-changesets-demo/pull/47) [`3f0a12f`](https://github.com/smfonseca/monorepo-changesets-demo/commit/3f0a12fe3ccbb67938e490c4cc0f805a5775da4f) Thanks [@smfonseca](https://github.com/smfonseca)! - test
+
 ## 3.4.0
 
 ### Minor Changes
