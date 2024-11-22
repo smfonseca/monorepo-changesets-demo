@@ -116,43 +116,30 @@ jobs:
       #     sudo apt-get update
       #     sudo apt-get install gh -y
 
-      - name: Extract Changeset Changelog
-        id: changelog
+      - name: Extract Changeset Summary
+        id: changeset-summary
         run: |
-          # Ensure there are tags
-          latest_tag=$(git describe --tags --abbrev=0 || echo "no-tag")
-          if [ "$latest_tag" = "no-tag" ]; then
-            echo "No tags found. Skipping changelog extraction."
+          # Find the latest changeset file
+          latest_changeset=$(ls -t .changeset | head -n 1)
+          if [ -z "$latest_changeset" ]; then
+            echo "No changeset files found."
             exit 1
           fi
 
-          # Extract package name from tag
-          package_name=$(echo "$latest_tag" | sed -E 's/@[^@]+@([a-zA-Z0-9_-]+)/\1/')
-          if [ -z "$package_name" ]; then
-            echo "Failed to extract package name from tag: $latest_tag"
+          # Extract the changeset content
+          changeset_content=$(cat ".changeset/$latest_changeset")
+          if [ -z "$changeset_content" ]; then
+            echo "Changeset file $latest_changeset is empty."
             exit 1
           fi
 
-          # Locate the changelog file
-          changelog_file=$(find ./packages -path "*/$package_name/CHANGELOG.md")
-          if [ -z "$changelog_file" ]; then
-            echo "Changelog file not found for package: $package_name"
-            exit 1
-          fi
-
-          # Extract changelog for the latest tag
-          changelog=$(awk "/^## \\[$latest_tag\\]/ {flag=1; next} /^## \\[/ {flag=0} flag {print}" "$changelog_file")
-          if [ -z "$changelog" ]; then
-            echo "No changelog entry found for tag $latest_tag in file $changelog_file"
-            exit 1
-          fi
-
-          # Export to GITHUB_ENV
+          # Export the changeset content
           {
-            echo "changelog<<EOF"
-            echo "$changelog"
+            echo "changeset_summary<<EOF"
+            echo "$changeset_content"
             echo "EOF"
           } >> $GITHUB_ENV
+        working-directory: .
 
       - name: Create GitHub Releases
         run: |
@@ -164,7 +151,7 @@ jobs:
                 "tag_name": "'"$tag"'",
                 "target_commitish": "main",
                 "name": "Release '"$tag"'",
-                "body": "'"$changelog"'",
+                "body": "'"$changeset_summary"'",
                 "draft": false,
                 "prerelease": false
               }' \
