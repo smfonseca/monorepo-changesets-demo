@@ -1,5 +1,6 @@
 {
   "name": "monorepo-changesets-demo",
+  "repository": "https://github.com/smfonseca/monorepo-changesets-demo.git",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
