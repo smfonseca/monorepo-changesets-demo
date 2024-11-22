@@ -71,7 +71,7 @@ jobs:
           pnpm changeset version
 
           # Extract updated package names
-          updated_packages=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"name\":' {} | sed -E 's/.*\"name\": \"@monorepo-changesets-demo\/([^\"]+)\",/\\1/'")
+          updated_packages=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"name\":' {} | sed -E 's/.*\"name\": \"@smfonseca\/([^\"]+)\",/\\1/'")
 
           # Extract updated versions (remove "version" text and quotes)
           updated_versions=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"version\":' {} | sed -E 's/.*\"version\": \"([^\"]+)\".*/\\1/'")
@@ -111,10 +111,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Install GitHub CLI
-      #   run: |
-      #     sudo apt-get update
-      #     sudo apt-get install gh -y
+      - name: Install GitHub CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install gh -y
 
       - name: Extract Changeset Summary
         id: changeset-summary
@@ -141,21 +141,29 @@ jobs:
           } >> $GITHUB_ENV
         working-directory: .
 
+      # - name: Create GitHub Releases
+      #   run: |
+      #     for tag in $(git tag --points-at HEAD); do
+      #       curl -X POST \
+      #         -H "Authorization: token $GITHUB_TOKEN" \
+      #         -H "Content-Type: application/json" \
+      #         -d '{
+      #           "tag_name": "'"$tag"'",
+      #           "target_commitish": "main",
+      #           "name": "Release '"$tag"'",
+      #           "body": "'"$changeset_summary"'",
+      #           "draft": false,
+      #           "prerelease": false
+      #         }' \
+      #         https://api.github.com/repos/${GITHUB_REPOSITORY}/releases
+      #     done
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create GitHub Releases
         run: |
           for tag in $(git tag --points-at HEAD); do
-            curl -X POST \
-              -H "Authorization: token $GITHUB_TOKEN" \
-              -H "Content-Type: application/json" \
-              -d '{
-                "tag_name": "'"$tag"'",
-                "target_commitish": "main",
-                "name": "Release '"$tag"'",
-                "body": "'"$changeset_summary"'",
-                "draft": false,
-                "prerelease": false
-              }' \
-              https://api.github.com/repos/${GITHUB_REPOSITORY}/releases
+            gh release create "$tag" --title "Release $tag" --notes "See the changelog for details: $changeset_summary"
           done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
