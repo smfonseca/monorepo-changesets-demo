@@ -76,12 +76,12 @@ jobs:
           # Extract updated versions (remove "version" text and quotes)
           updated_versions=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"version\":' {} | sed -E 's/.*\"version\": \"([^\"]+)\".*/\\1/' | tr -d '[:space:]'")
 
-          # Combine package names and versions into a single string with a space after the colon
+          # Combine package names and versions into a single string with a space after the colon and no trailing comma
           packages_with_versions=$(paste -d':' <(echo "$updated_packages") <(echo "$updated_versions") | sed 's/:/: /g' | tr '\n' ', ' | sed 's/, $//')
 
           # Generate the commit message
           if [ -n "$packages_with_versions" ]; then
-            commit_message="chore(release): $packages_with_versions [skip ci]"
+            commit_message="chore(release): apply changesets to $packages_with_versions [skip ci]"
           else
             commit_message="chore(release): apply changesets [skip ci]"
           fi
