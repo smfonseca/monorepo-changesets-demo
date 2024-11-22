@@ -1,5 +1,13 @@
 # @monorepo-changesets-demo/components
 
+## 2.5.0
+
+### Minor Changes
+
+- [#39](https://github.com/smfonseca/monorepo-changesets-demo/pull/39) [`71e5aa1`](https://github.com/smfonseca/monorepo-changesets-demo/commit/71e5aa13cd8afe78ba9114ae41082f8b1b6b3095) Thanks [@smfonseca](https://github.com/smfonseca)! - components is a minor bump
+
+  docs is a patch
+
 ## 2.4.8
 
 ### Patch Changes
