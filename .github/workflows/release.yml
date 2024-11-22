@@ -110,3 +110,16 @@ jobs:
           git push --tags
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install GitHub CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install gh -y
+
+      - name: Create GitHub Releases
+        run: |
+          for tag in $(git tag --points-at HEAD); do
+            gh release create "$tag" --title "Release $tag" --notes "See the changelog for details: $tag"
+          done
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
