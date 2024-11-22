@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/components
 
+## 2.4.7
+
+### Patch Changes
+
+- [#37](https://github.com/smfonseca/monorepo-changesets-demo/pull/37) [`1316eec`](https://github.com/smfonseca/monorepo-changesets-demo/commit/1316eece1eb52973c06a33eea6352bc4efd2271c) Thanks [@smfonseca](https://github.com/smfonseca)! - test 25
+
 ## 2.4.6
 
 ### Patch Changes
