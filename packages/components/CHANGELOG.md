@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/components
 
+## 2.4.4
+
+### Patch Changes
+
+- [`cc4b80f`](https://github.com/smfonseca/monorepo-changesets-demo/commit/cc4b80f12c22649dd7f272624ebb088f451ae7de) Thanks [@smfonseca](https://github.com/smfonseca)! - test commit message
+
 ## 2.4.3
 
 ### Patch Changes
