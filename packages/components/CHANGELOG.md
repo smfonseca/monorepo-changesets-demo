@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/components
 
+## 2.6.0
+
+### Minor Changes
+
+- [#40](https://github.com/smfonseca/monorepo-changesets-demo/pull/40) [`a67e5e7`](https://github.com/smfonseca/monorepo-changesets-demo/commit/a67e5e7675c399c30c10c04b0109fc12a68f21ba) Thanks [@smfonseca](https://github.com/smfonseca)! - minor to both packages
+
 ## 2.5.0
 
 ### Minor Changes
