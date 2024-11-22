@@ -79,11 +79,6 @@ jobs:
           # Combine package names and versions into a single string with a space after the colon
           packages_with_versions=$(paste -d':' <(echo "$updated_packages") <(echo "$updated_versions") | sed 's/:/: /g' | tr '\n' ', ' | sed 's/,/, /g')
 
-          # Debugging
-          echo "DEBUG: Updated Packages: $updated_packages"
-          echo "DEBUG: Updated Versions: $updated_versions"
-          echo "DEBUG: Packages with Versions: $packages_with_versions"
-
           # Generate the commit message
           if [ -n "$packages_with_versions" ]; then
             commit_message="chore(release): $packages_with_versions [skip ci]"
