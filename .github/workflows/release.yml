@@ -99,6 +99,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Create GitHub release
+        uses: changesets/action@v1
+        with:
+          publish: false
+          version: false
+          createGithubReleases: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: 📦 Publish to NPM
         run: |
           pnpm changeset publish
