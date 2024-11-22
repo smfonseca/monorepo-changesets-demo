@@ -1,6 +1,6 @@
 {
   "name": "@monorepo-changesets-demo/components",
-  "version": "2.8.0",
+  "version": "2.8.1",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"

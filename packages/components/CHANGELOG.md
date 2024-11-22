@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/components
 
+## 2.8.1
+
+### Patch Changes
+
+- [#43](https://github.com/smfonseca/monorepo-changesets-demo/pull/43) [`5b60954`](https://github.com/smfonseca/monorepo-changesets-demo/commit/5b60954689d8bea8c9f0044fc3e459c1825e7a68) Thanks [@smfonseca](https://github.com/smfonseca)! - test
+
 ## 2.8.0
 
 ### Minor Changes
