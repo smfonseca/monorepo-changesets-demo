@@ -119,22 +119,28 @@ jobs:
       - name: Extract Latest Changelog Updates
         id: changelog-updates
         run: |
-          # Extract updated packages from the git diff
+          # Extract updated CHANGELOG.md files from the git diff
           updated_changelogs=$(git diff --name-only HEAD~1 HEAD | grep "CHANGELOG.md")
           if [ -z "$updated_changelogs" ]; then
             echo "No updated changelogs found."
             exit 1
           fi
 
-          # Extract the latest changelog entries for each updated package
+          # Initialize release notes
           release_notes=""
+
+          # Extract the latest changelog entry for each updated package
           for changelog in $updated_changelogs; do
             package_name=$(basename $(dirname "$changelog"))
-            latest_entry=$(awk '/^## / {flag=1; next} /^## / {flag=0} flag {print}' "$changelog")
+
+            # Extract the latest changelog entry (content between the first two "##" headers)
+            latest_entry=$(awk '/^## / {if (flag) exit; flag=1; next} flag {print}' "$changelog")
+
+            # Append the package name and its changelog entry to the release notes
             release_notes+="### $package_name\n$latest_entry\n\n"
           done
 
-          # Export the release notes
+          # Export the release notes for use in the next steps
           echo "release_notes<<EOF" >> $GITHUB_ENV
           echo "$release_notes" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
