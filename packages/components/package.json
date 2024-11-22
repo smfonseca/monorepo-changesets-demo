@@ -1,6 +1,9 @@
 {
   "name": "@smfonseca/components",
   "repository": "https://github.com/smfonseca/monorepo-changesets-demo.git",
-  "private": true,
-  "version": "2.9.0"
+  "version": "2.9.0",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
 }

@@ -2,8 +2,5 @@
   "name": "@smfonseca/docs",
   "repository": "https://github.com/smfonseca/monorepo-changesets-demo.git",
   "version": "3.4.0",
-  "publishConfig": {
-    "access": "restricted",
-    "registry": "https://registry.npmjs.org/"
-  }
+  "private": true
 }
