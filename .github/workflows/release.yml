@@ -71,13 +71,18 @@ jobs:
           pnpm changeset version
 
           # Extract updated package names
-          updated_packages=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"name\":' {} | sed -E 's/.*\"name\": \"@monorepo-changesets-demo\/([^\"]+)\",/\\1/' | tr -d '[:space:]'")
+          updated_packages=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"name\":' {} | sed -E 's/.*\"name\": \"@monorepo-changesets-demo\/([^\"]+)\",/\\1/'")
 
           # Extract updated versions (remove "version" text and quotes)
-          updated_versions=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"version\":' {} | sed -E 's/.*\"version\": \"([^\"]+)\".*/\\1/' | tr -d '[:space:]'")
+          updated_versions=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"version\":' {} | sed -E 's/.*\"version\": \"([^\"]+)\".*/\\1/'")
 
           # Combine package names and versions into a single string with a space after the colon
-          packages_with_versions=$(paste -d':' <(echo "$updated_packages") <(echo "$updated_versions") | sed 's/:/: /g' | tr '\n' '\n' | sed ':a;N;$!ba;s/\n/, /g')
+          packages_with_versions=$(paste -d':' <(echo "$updated_packages") <(echo "$updated_versions") | sed 's/:/: /g' | tr '\n' ', ' | sed 's/, $//')
+
+          # Debugging
+          echo "DEBUG: Updated Packages: $updated_packages"
+          echo "DEBUG: Updated Versions: $updated_versions"
+          echo "DEBUG: Packages with Versions: $packages_with_versions"
 
           # Generate the commit message
           if [ -n "$packages_with_versions" ]; then
