@@ -1,5 +1,15 @@
 # @monorepo-changesets-demo/components
 
+## 3.0.9
+
+### Patch Changes
+
+- [#56](https://github.com/smfonseca/monorepo-changesets-demo/pull/56) [`da42100`](https://github.com/smfonseca/monorepo-changesets-demo/commit/da4210060a28a25402fe4ed097f8821cb757e14c) Thanks [@smfonseca](https://github.com/smfonseca)! - this is a test
+
+  i'm testing the release notes
+
+  does it look good?
+
 ## 3.0.8
 
 ### Patch Changes
