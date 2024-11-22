@@ -111,18 +111,41 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Install GitHub CLI
-        run: |
-          sudo apt-get update
-          sudo apt-get install gh -y
+      # - name: Install GitHub CLI
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install gh -y
 
       - name: Extract Changeset Changelog
         id: changelog
         run: |
-          # Extract the changelog entries for the latest version
-          latest_tag=$(git describe --tags --abbrev=0)
-          changelog=$(awk "/^## \\[$latest_tag\\]/ {flag=1; next} /^## \\[/ {flag=0} flag {print}" CHANGELOG.md)
-          echo "changelog=$changelog" >> $GITHUB_ENV
+          # Ensure there are tags
+          latest_tag=$(git describe --tags --abbrev=0 || echo "no-tag")
+          if [ "$latest_tag" = "no-tag" ]; then
+            echo "No tags found. Skipping changelog extraction."
+            exit 1
+          fi
+
+          # Set the changelog file path
+          changelog_file="CHANGELOG.md"
+          if [ ! -f "$changelog_file" ]; then
+            echo "Changelog file not found: $changelog_file"
+            exit 1
+          fi
+
+          # Extract changelog for the latest tag
+          changelog=$(awk "/^## \\[$latest_tag\\]/ {flag=1; next} /^## \\[/ {flag=0} flag {print}" "$changelog_file")
+          if [ -z "$changelog" ]; then
+            echo "No changelog entry found for tag $latest_tag"
+            exit 1
+          fi
+
+          # Export to GITHUB_ENV
+          {
+            echo "changelog<<EOF"
+            echo "$changelog"
+            echo "EOF"
+          } >> $GITHUB_ENV
 
       - name: Create GitHub Releases
         run: |
