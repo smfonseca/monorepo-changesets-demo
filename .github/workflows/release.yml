@@ -116,54 +116,36 @@ jobs:
           sudo apt-get update
           sudo apt-get install gh -y
 
-      - name: Extract Changeset Summary
-        id: changeset-summary
+      - name: Extract Latest Changelog Updates
+        id: changelog-updates
         run: |
-          # Find the latest changeset file
-          latest_changeset=$(ls -t .changeset | head -n 1)
-          if [ -z "$latest_changeset" ]; then
-            echo "No changeset files found."
+          # Extract updated packages from the git diff
+          updated_changelogs=$(git diff --name-only HEAD~1 HEAD | grep "CHANGELOG.md")
+          if [ -z "$updated_changelogs" ]; then
+            echo "No updated changelogs found."
             exit 1
           fi
 
-          # Extract the changeset content
-          changeset_content=$(cat ".changeset/$latest_changeset")
-          if [ -z "$changeset_content" ]; then
-            echo "Changeset file $latest_changeset is empty."
-            exit 1
-          fi
+          # Extract the latest changelog entries for each updated package
+          release_notes=""
+          for changelog in $updated_changelogs; do
+            package_name=$(basename $(dirname "$changelog"))
+            latest_entry=$(awk '/^## / {flag=1; next} /^## / {flag=0} flag {print}' "$changelog")
+            release_notes+="### $package_name\n$latest_entry\n\n"
+          done
 
-          # Export the changeset content
-          {
-            echo "changeset_summary<<EOF"
-            echo "$changeset_content"
-            echo "EOF"
-          } >> $GITHUB_ENV
-        working-directory: .
-
-      # - name: Create GitHub Releases
-      #   run: |
-      #     for tag in $(git tag --points-at HEAD); do
-      #       curl -X POST \
-      #         -H "Authorization: token $GITHUB_TOKEN" \
-      #         -H "Content-Type: application/json" \
-      #         -d '{
-      #           "tag_name": "'"$tag"'",
-      #           "target_commitish": "main",
-      #           "name": "Release '"$tag"'",
-      #           "body": "'"$changeset_summary"'",
-      #           "draft": false,
-      #           "prerelease": false
-      #         }' \
-      #         https://api.github.com/repos/${GITHUB_REPOSITORY}/releases
-      #     done
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Export the release notes
+          echo "release_notes<<EOF" >> $GITHUB_ENV
+          echo "$release_notes" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
       - name: Create GitHub Releases
         run: |
           for tag in $(git tag --points-at HEAD); do
-            gh release create "$tag" --title "Release $tag" --notes "See the changelog for details: $changeset_summary"
+            gh release create "$tag" \
+              --title "Release $tag" \
+              --notes "$release_notes"
           done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
