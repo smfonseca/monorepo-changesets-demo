@@ -63,27 +63,10 @@ jobs:
         id: install-dependencies
         run: pnpm install
 
-      # - name: 🏗️ Check for Changesets
-      #   run: |
-      #     pnpm changeset status || echo "No changeset found. If necessary, adding an empty changeset..."
-      #     pnpm changeset add --empty --message "Non-release changes [skip ci]" || true
-
       - name: 🏗️ Preview Release
         run: pnpm changeset status --verbose
 
-      - name: 🏗️ Check Code Freeze
-        id: check-freeze
-        run: |
-          if [ "${{ env.GITHUB_FREEZE }}" = "true" ]; then
-            echo "Code freeze is active"
-            echo "freeze=true" >> $GITHUB_ENV
-          else
-            echo "Code freeze is not active"
-            echo "freeze=false" >> $GITHUB_ENV
-          fi
-
       - name: 🏗️ Bump Version and Apply Changesets
-        if: env.freeze == 'false'
         run: |
           pnpm changeset version
 
@@ -106,31 +89,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 📝 Push Updated Files to Main
-        if: env.freeze == 'false'
         run: git push origin main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: 📝 Generate Commit Message
-        id: generate_commit_message
-        run: |
-          pnpm changeset version
-
-          updated_packages=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"name\":' {} | sed -E 's/.*\"name\": \"([^\"]+)\",/\\1/'")
-          updated_versions=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"version\":' {} | sed -E 's/.*\"version\": \"([^\"]+)\",/\\1/'")
-          packages_with_versions=$(paste -d: <(echo "$updated_packages") <(echo "$updated_versions") | tr '\n' ', ' | sed 's/, $//')
-          if [ -n "$packages_with_versions" ]; then
-            echo "commit_message=chore(release): $packages_with_versions [skip ci]" >> $GITHUB_ENV
-          else
-            echo "commit_message=chore(release): version packages 🦋 [skip ci]" >> $GITHUB_ENV
-          fi
-
-      - name: 📣 Open Release Pull Request
-        if: env.GITHUB_FREEZE == 'true'
-        uses: changesets/action@v1
-        with:
-          version: pnpm changeset version
-          title: ${{ env.commit_message }}
-          commit: ${{ env.commit_message }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
