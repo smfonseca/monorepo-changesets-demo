@@ -116,10 +116,29 @@ jobs:
           sudo apt-get update
           sudo apt-get install gh -y
 
+      - name: Extract Changeset Changelog
+        id: changelog
+        run: |
+          # Extract the changelog entries for the latest version
+          latest_tag=$(git describe --tags --abbrev=0)
+          changelog=$(awk "/^## \\[$latest_tag\\]/ {flag=1; next} /^## \\[/ {flag=0} flag {print}" CHANGELOG.md)
+          echo "changelog=$changelog" >> $GITHUB_ENV
+
       - name: Create GitHub Releases
         run: |
           for tag in $(git tag --points-at HEAD); do
-            gh release create "$tag" --title "Release $tag" --notes "See the changelog for details: $tag"
+            curl -X POST \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              -H "Content-Type: application/json" \
+              -d '{
+                "tag_name": "'"$tag"'",
+                "target_commitish": "main",
+                "name": "Release '"$tag"'",
+                "body": "'"$changelog"'",
+                "draft": false,
+                "prerelease": false
+              }' \
+              https://api.github.com/repos/${GITHUB_REPOSITORY}/releases
           done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
