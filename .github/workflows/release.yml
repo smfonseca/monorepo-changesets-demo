@@ -119,12 +119,27 @@ jobs:
       - name: Generate Release Notes
         id: release-notes
         run: |
-          # Generate release notes preview
-          notes=$(pnpm changeset status --verbose | awk '/---/,0' | sed 's/---//')
+          # Find all updated CHANGELOG.md files in the last commit
+          updated_changelogs=$(git diff --name-only HEAD~1 HEAD | grep "CHANGELOG.md")
+          if [ -z "$updated_changelogs" ]; then
+            echo "No updated changelogs found."
+            echo "release_notes=No updates in this release." >> $GITHUB_ENV
+            exit 0
+          fi
 
-          # Export release notes
+          # Initialize release notes
+          release_notes=""
+
+          # Extract the latest changes from each updated changelog
+          for changelog in $updated_changelogs; do
+            package_name=$(basename $(dirname "$changelog"))
+            latest_entry=$(awk '/^# / {if (flag) exit; flag=1; next} flag {print}' "$changelog")
+            release_notes+="### $package_name\n$latest_entry\n\n"
+          done
+
+          # Export the release notes
           echo "release_notes<<EOF" >> $GITHUB_ENV
-          echo "$notes" >> $GITHUB_ENV
+          echo "$release_notes" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
       - name: Create GitHub Releases
