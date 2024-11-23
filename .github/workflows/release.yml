@@ -137,14 +137,14 @@ jobs:
             # Extract the version heading and its content (from first ## to second ##)
             latest_entry=$(awk '/^## / {if (flag) exit; flag=1; print; next} flag {print}' "$changelog")
 
-            # Clean up extra newlines and preserve markdown formatting
-            latest_entry=$(echo "$latest_entry" | sed ':a;N;$!ba;s/\n\n/\n/g')
+            # Clean up the entry to avoid escaped newlines
+            latest_entry=$(echo "$latest_entry" | sed -E ':a;N;$!ba;s/[[:space:]]*\\n[[:space:]]*/\n/g')
 
             # Append the package name, version, and changelog entry to the release notes
             release_notes+="### $package_name\n\n$latest_entry\n\n"
           done
 
-          # Trim any trailing newlines from the final release notes
+          # Remove trailing newlines or spaces
           release_notes=$(echo "$release_notes" | sed 's/[[:space:]]*$//')
 
           # Export the release notes for use in the next steps
