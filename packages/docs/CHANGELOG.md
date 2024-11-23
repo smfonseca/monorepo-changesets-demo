@@ -1,5 +1,13 @@
 # @monorepo-changesets-demo/docs
 
+## 3.5.4
+
+### Patch Changes
+
+- [#58](https://github.com/smfonseca/monorepo-changesets-demo/pull/58) [`131a5f1`](https://github.com/smfonseca/monorepo-changesets-demo/commit/131a5f198dcb5252158e579f926d26504fae6e9a) Thanks [@smfonseca](https://github.com/smfonseca)! - - test docs
+  - 123
+  - testtttt
+
 ## 3.5.3
 
 ### Patch Changes
