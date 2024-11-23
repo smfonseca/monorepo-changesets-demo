@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/components
 
+## 4.0.0
+
+### Major Changes
+
+- [#61](https://github.com/smfonseca/monorepo-changesets-demo/pull/61) [`7df390a`](https://github.com/smfonseca/monorepo-changesets-demo/commit/7df390a7cfa2d2d17ad426c772a6409dfce086bc) Thanks [@smfonseca](https://github.com/smfonseca)! - MAJOR
+
 ## 3.2.0
 
 ### Minor Changes
