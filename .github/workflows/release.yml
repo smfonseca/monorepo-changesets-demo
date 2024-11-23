@@ -116,7 +116,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install gh -y
 
-      - name: Generate Release Notes
+      - name: Generate Clean Release Notes
         id: release-notes
         run: |
           # Find all updated CHANGELOG.md files in the last commit
@@ -132,16 +132,17 @@ jobs:
 
           # Extract the latest changes from each updated changelog
           for changelog in $updated_changelogs; do
-            package_name=$(basename $(dirname "$changelog"))
-
-            # Extract the version heading and its content (from first ## to second ##)
+            # Extract version heading and its content (from first ## to second ##)
             latest_entry=$(awk '/^## / {if (flag) exit; flag=1; print; next} flag {print}' "$changelog")
 
-            # Clean up the entry to avoid escaped newlines
-            latest_entry=$(echo "$latest_entry" | sed -E ':a;N;$!ba;s/[[:space:]]*\\n[[:space:]]*/\n/g')
+            # Extract version number (first line of the entry)
+            version=$(echo "$latest_entry" | head -n 1 | sed 's/^## //')
 
-            # Append the package name, version, and changelog entry to the release notes
-            release_notes+="### $package_name\n\n$latest_entry\n\n"
+            # Extract change details (everything after the version heading)
+            change_details=$(echo "$latest_entry" | tail -n +2)
+
+            # Combine the version and change details
+            release_notes+="$version\n\n$change_details\n\n"
           done
 
           # Remove trailing newlines or spaces
@@ -149,7 +150,7 @@ jobs:
 
           # Export the release notes for use in the next steps
           echo "release_notes<<EOF" >> $GITHUB_ENV
-          echo "$release_notes" >> $GITHUB_ENV
+          echo -e "$release_notes" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
       - name: Create GitHub Releases
