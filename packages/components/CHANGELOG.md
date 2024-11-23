@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/components
 
+## 4.1.0
+
+### Minor Changes
+
+- [#62](https://github.com/smfonseca/monorepo-changesets-demo/pull/62) [`973e1e1`](https://github.com/smfonseca/monorepo-changesets-demo/commit/973e1e14f4918d8c435ae9f18e6f3f54005da1e0) Thanks [@smfonseca](https://github.com/smfonseca)! - minor path test
+
 ## 4.0.0
 
 ### Major Changes
