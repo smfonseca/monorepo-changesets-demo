@@ -135,14 +135,11 @@ jobs:
             # Extract version heading and its content (from first ## to second ##)
             latest_entry=$(awk '/^## / {if (flag) exit; flag=1; print; next} flag {print}' "$changelog")
 
-            # Extract version number (first line of the entry)
-            version=$(echo "$latest_entry" | head -n 1 | sed 's/^## //')
-
             # Extract change details (everything after the version heading)
             change_details=$(echo "$latest_entry" | tail -n +2)
 
             # Combine the version and change details
-            release_notes+="$version\n\n$change_details\n\n"
+            release_notes+="$change_details\n\n"
           done
 
           # Remove trailing newlines or spaces
