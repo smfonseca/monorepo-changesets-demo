@@ -133,11 +133,18 @@ jobs:
           # Extract the latest changes from each updated changelog
           for changelog in $updated_changelogs; do
             package_name=$(basename $(dirname "$changelog"))
-            latest_entry=$(awk '/^# / {if (flag) exit; flag=1; next} flag {print}' "$changelog")
-            release_notes+="### $package_name\n$latest_entry\n\n"
+
+            # Extract the version heading and its content (from first ## to second ##)
+            latest_entry=$(awk '/^## / {if (flag) exit; flag=1; print; next} flag {print}' "$changelog")
+
+            # Append the package name, version, and changelog entry to the release notes
+            release_notes+="### $package_name\n\n$latest_entry\n\n"
           done
 
-          # Export the release notes
+          # Trim any trailing newlines from the final release notes
+          release_notes=$(echo "$release_notes" | sed 's/[[:space:]]*$//')
+
+          # Export the release notes for use in the next steps
           echo "release_notes<<EOF" >> $GITHUB_ENV
           echo "$release_notes" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
