@@ -63,12 +63,17 @@ jobs:
           echo "Changeset status output:"
           echo "$output"
 
-          # Check if there are no releases
-          if echo "$output" | grep -q "NO packages"; then
+          # Check for "NO packages" in patch, minor, and major
+          no_patch=$(echo "$output" | grep -q "Running release would release NO packages as a patch"; echo $?)
+          no_minor=$(echo "$output" | grep -q "Running release would release NO packages as a minor"; echo $?)
+          no_major=$(echo "$output" | grep -q "Running release would release NO packages as a major"; echo $?)
+
+          # If all types are "NO packages," skip further steps
+          if [ $no_patch -eq 0 ] && [ $no_minor -eq 0 ] && [ $no_major -eq 0 ]; then
             echo "No packages to release. Skipping further steps."
             echo "should_skip=true" >> $GITHUB_ENV
           else
-            echo "Releases found. Proceeding."
+            echo "Packages to release found. Proceeding."
             echo "should_skip=false" >> $GITHUB_ENV
           fi
 
