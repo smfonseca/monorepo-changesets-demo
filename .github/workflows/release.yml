@@ -127,6 +127,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install GitHub CLI
+        if: env.should_skip != 'true'
         run: |
           sudo apt-get update
           sudo apt-get install gh -y
