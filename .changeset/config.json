@@ -6,7 +6,7 @@
       "repo": "smfonseca/monorepo-changesets-demo"
     }
   ],
-  "commit": false,
+  "commit": true,
   "fixed": [],
   "linked": [],
   "access": "public",
