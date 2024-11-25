@@ -1,4 +1,10 @@
 {
-  "changesets": [],
+  "changesets": [
+    {
+      "releases": [],
+      "summary": "",
+      "id": "friendly-peas-explode"
+    }
+  ],
   "releases": []
 }
