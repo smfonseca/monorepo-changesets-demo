@@ -1,5 +1,11 @@
 # @smfonseca/tokens
 
+## 1.0.4
+
+### Patch Changes
+
+- [`6d7d05e`](https://github.com/smfonseca/monorepo-changesets-demo/commit/6d7d05e03a7d7b830bf4c886ffefed7e3528d44c) Thanks [@smfonseca](https://github.com/smfonseca)! - teste 3
+
 ## 1.0.3
 
 ### Patch Changes

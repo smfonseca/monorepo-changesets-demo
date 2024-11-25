@@ -7,19 +7,38 @@
           "type": "patch"
         }
       ],
-      "summary": "test",
-      "id": "strange-roses-lick"
+      "summary": "test 2",
+      "id": "afraid-cats-tie"
+    },
+    {
+      "releases": [
+        {
+          "name": "@smfonseca/tokens",
+          "type": "patch"
+        }
+      ],
+      "summary": "teste 3",
+      "id": "thirty-apricots-knock"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "4.2.8",
+      "oldVersion": "4.2.9",
       "changesets": [
-        "strange-roses-lick"
+        "afraid-cats-tie"
       ],
-      "newVersion": "4.2.9"
+      "newVersion": "4.2.10"
+    },
+    {
+      "name": "@smfonseca/tokens",
+      "type": "patch",
+      "oldVersion": "1.0.3",
+      "changesets": [
+        "thirty-apricots-knock"
+      ],
+      "newVersion": "1.0.4"
     }
   ]
 }
