@@ -81,7 +81,6 @@ jobs:
           PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
 
       - name: 🏗️ Apply Changesets
-        if: env.should_skip != 'true'
         run: |
           pnpm changeset version
 
