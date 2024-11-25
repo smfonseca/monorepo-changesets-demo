@@ -20,6 +20,8 @@ importers:
 
   packages/docs: {}
 
+  packages/tokens: {}
+
 packages:
 
   '@babel/runtime@7.26.0':
