@@ -138,7 +138,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install gh -y
 
-      - name: Generate Clean Release Notes
+      - name: Generate Clean Release Notes Per Package
         if: env.should_skip != 'true'
         id: release-notes
         run: |
@@ -146,44 +146,26 @@ jobs:
           echo "Files changed in this commit:"
           git diff --name-only HEAD~1 HEAD
 
-          # Identify updated CHANGELOG.md files or changeset files
+          # Identify updated CHANGELOG.md files
           updated_changelogs=$(git diff --name-only HEAD~1 HEAD | grep "CHANGELOG.md")
-          updated_changesets=$(git diff --name-only HEAD~1 HEAD | grep ".changeset/")
           if [ -z "$updated_changelogs" ]; then
-            echo "No updated changelogs found."
-
-            # Check if only empty changesets are present
-            empty_changesets=true
-            for changeset in $updated_changesets; do
-              content=$(cat "$changeset")
-              if [ "$(echo "$content" | grep -v '^---$')" ]; then
-                empty_changesets=false
-                break
-              fi
-            done
-
-            if [ "$empty_changesets" = true ]; then
-              echo "Only empty changesets detected. Skipping this step."
-              echo "release_notes=No updates in this release." >> $GITHUB_ENV
-              exit 0
-            fi
+            echo "No updated changelogs found. Skipping this step."
+            echo "release_notes=No updates in this release." >> $GITHUB_ENV
+            exit 0
           fi
 
           echo "Updated Changelogs:"
           echo "$updated_changelogs"
 
-          # Initialize release notes
+          # Initialize release notes per package
           release_notes=""
 
-          # Extract the latest changes from each updated changelog
+          # Extract the latest changes for each package
           for changelog in $updated_changelogs; do
             echo "Processing $changelog"
 
-            # Check if the file exists
-            if [ ! -f "$changelog" ]; then
-              echo "File not found: $changelog. Skipping."
-              continue
-            fi
+            # Extract package name from the changelog path (e.g., `packages/components/CHANGELOG.md` -> `components`)
+            package_name=$(basename "$(dirname "$changelog")")
 
             # Debug: Output the content of the changelog
             echo "Content of $changelog:"
@@ -196,44 +178,43 @@ jobs:
               continue
             fi
 
-            echo "Latest Entry: $latest_entry"
+            echo "Latest Entry for $package_name: $latest_entry"
 
-            # Extract change details (everything after the version heading)
-            change_details=$(echo "$latest_entry" | tail -n +2)
-            echo "Change Details: $change_details"
-
-            # Combine the version and change details
-            release_notes+="$change_details\n\n"
+            # Add the package-specific release notes
+            release_notes+="$package_name:\n$latest_entry\n\n"
           done
 
           # Debug final release notes
-          echo "Final Release Notes:"
+          echo "Final Release Notes Per Package:"
           echo "$release_notes"
 
           # Remove trailing newlines or spaces
           release_notes=$(echo "$release_notes" | sed 's/[[:space:]]*$//')
-
-          # Check if release notes are meaningful
-          if [ -z "$release_notes" ]; then
-            echo "No meaningful changes detected. Skipping release."
-            echo "release_notes=No meaningful changes detected. Skipping release." >> $GITHUB_ENV
-            exit 0
-          fi
 
           # Export the release notes for use in the next steps
           echo "release_notes<<EOF" >> $GITHUB_ENV
           echo -e "$release_notes" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
-      - name: Create GitHub Releases
+      - name: Create GitHub Releases Per Package
         if: env.should_skip != 'true'
         run: |
+          # Loop through each tag pointing at HEAD
           for tag in $(git tag --points-at HEAD); do
+            # Extract release notes for the corresponding package
+            package_name=$(echo "$tag" | sed 's/@smfonseca\///' | cut -d'@' -f1)
+            package_notes=$(echo -e "$release_notes" | awk -v package="$package_name" 'BEGIN {flag=0} $0 ~ package":" {flag=1; next} /^$/{flag=0} flag')
+
+            echo "Creating release for $tag with notes:"
+            echo "$package_notes"
+
+            # Create the release
             gh release create "$tag" \
               --title "$tag" \
-              --notes "$release_notes"
+              --notes "$package_notes"
           done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
 
