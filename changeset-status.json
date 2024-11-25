@@ -1,10 +1,25 @@
 {
   "changesets": [
     {
-      "releases": [],
-      "summary": "",
-      "id": "friendly-peas-explode"
+      "releases": [
+        {
+          "name": "@smfonseca/tokens",
+          "type": "patch"
+        }
+      ],
+      "summary": "test",
+      "id": "seven-donuts-worry"
     }
   ],
-  "releases": []
+  "releases": [
+    {
+      "name": "@smfonseca/tokens",
+      "type": "patch",
+      "oldVersion": "1.0.0",
+      "changesets": [
+        "seven-donuts-worry"
+      ],
+      "newVersion": "1.0.1"
+    }
+  ]
 }
