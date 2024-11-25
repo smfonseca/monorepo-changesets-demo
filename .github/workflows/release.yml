@@ -157,10 +157,10 @@ jobs:
           echo "Updated Changelogs:"
           echo "$updated_changelogs"
 
-          # Initialize release notes per package
-          release_notes=""
+          # Initialize a variable to store all release notes
+          release_notes_by_package=""
 
-          # Extract the latest changes for each updated changelog
+          # Extract the latest changes for each package
           for changelog in $updated_changelogs; do
             echo "Processing $changelog"
 
@@ -172,41 +172,57 @@ jobs:
             cat "$changelog"
 
             # Extract content between the first and second `##` headings
-            latest_entry=$(awk '/^## / {if (flag) exit; flag=1; next} flag {print}' "$changelog")
+            latest_entry=$(awk '/^## / {if (flag) exit; flag=1; print; next} flag {print}' "$changelog")
             if [ -z "$latest_entry" ]; then
               echo "No valid changelog entry found in $changelog. Skipping."
               continue
             fi
 
-            # Format the release notes for this package
-            release_notes+="$package_name:\n$latest_entry\n\n"
+            # Add package-specific release notes
+            package_release_notes="## $package_name\n$latest_entry\n\n"
+            release_notes_by_package+="$package_release_notes"
+
+            # Export package-specific release notes to an environment variable for later use
+            echo "release_notes_$package_name<<EOF" >> $GITHUB_ENV
+            echo -e "$latest_entry" >> $GITHUB_ENV
+            echo "EOF" >> $GITHUB_ENV
           done
 
           # Debug final release notes
-          echo "Final Release Notes Per Package:"
-          echo "$release_notes"
+          echo "Final Release Notes By Package:"
+          echo "$release_notes_by_package"
 
-          # Remove trailing newlines or spaces
-          release_notes=$(echo "$release_notes" | sed 's/[[:space:]]*$//')
+          # Remove trailing newlines or spaces from combined notes (optional)
+          release_notes_by_package=$(echo "$release_notes_by_package" | sed 's/[[:space:]]*$//')
 
-          # Export the release notes for use in the next steps
-          echo "release_notes<<EOF" >> $GITHUB_ENV
-          echo -e "$release_notes" >> $GITHUB_ENV
+          # Export the combined release notes for reference
+          echo "release_notes_by_package<<EOF" >> $GITHUB_ENV
+          echo -e "$release_notes_by_package" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
       - name: Create GitHub Releases Per Package
         if: env.should_skip != 'true'
         run: |
           for tag in $(git tag --points-at HEAD); do
+            # Extract the package name from the tag (assuming tag format like `@scope/package@version`)
             package_name=$(echo "$tag" | sed 's/@smfonseca\///' | cut -d'@' -f1)
-            package_notes=$(echo -e "$release_notes" | awk -v package="$package_name" 'BEGIN {flag=0} $0 ~ package":" {flag=1; next} /^$/{flag=0} flag')
+
+            # Extract the release notes for the package
+            package_notes=$(printenv "release_notes_$package_name")
+
+            if [ -z "$package_notes" ]; then
+              echo "No release notes found for $package_name. Skipping."
+              continue
+            fi
 
             echo "Creating release for $tag with notes:"
             echo "$package_notes"
 
+            # Create the release
             gh release create "$tag" \
               --title "$tag" \
               --notes "$package_notes"
           done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
