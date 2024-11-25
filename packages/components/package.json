@@ -1,7 +1,7 @@
 {
   "name": "@smfonseca/components",
   "repository": "https://github.com/smfonseca/monorepo-changesets-demo.git",
-  "description": "Shared components for this monorepo",
+  "description": "Shared components",
   "version": "4.2.4",
   "publishConfig": {
     "access": "public",
