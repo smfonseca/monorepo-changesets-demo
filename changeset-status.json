@@ -1,44 +1,4 @@
 {
-  "changesets": [
-    {
-      "releases": [
-        {
-          "name": "@smfonseca/tokens",
-          "type": "patch"
-        }
-      ],
-      "summary": "test 2",
-      "id": "silent-hats-explode"
-    },
-    {
-      "releases": [
-        {
-          "name": "@smfonseca/components",
-          "type": "patch"
-        }
-      ],
-      "summary": "test",
-      "id": "two-chicken-run"
-    }
-  ],
-  "releases": [
-    {
-      "name": "@smfonseca/tokens",
-      "type": "patch",
-      "oldVersion": "1.0.2",
-      "changesets": [
-        "silent-hats-explode"
-      ],
-      "newVersion": "1.0.3"
-    },
-    {
-      "name": "@smfonseca/components",
-      "type": "patch",
-      "oldVersion": "4.2.5",
-      "changesets": [
-        "two-chicken-run"
-      ],
-      "newVersion": "4.2.6"
-    }
-  ]
+  "changesets": [],
+  "releases": []
 }
