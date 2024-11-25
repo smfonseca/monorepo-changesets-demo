@@ -101,7 +101,8 @@ jobs:
 
       - name: 📦 Publish to NPM
         run: |
-          pnpm changeset publish
+          pnpm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
+          pnpm changeset publish -r
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 

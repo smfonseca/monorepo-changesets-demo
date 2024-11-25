@@ -1,0 +1,9 @@
+{
+  "name": "@smfonseca/tokens",
+  "repository": "https://github.com/smfonseca/monorepo-changesets-demo.git",
+  "version": "0.0.1",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}
