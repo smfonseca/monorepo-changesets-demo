@@ -118,10 +118,24 @@ jobs:
           # Identify updated CHANGELOG.md files or changeset files
           updated_changelogs=$(git diff --name-only HEAD~1 HEAD | grep "CHANGELOG.md")
           updated_changesets=$(git diff --name-only HEAD~1 HEAD | grep ".changeset/")
-          if [ -z "$updated_changelogs" ] && [ -z "$updated_changesets" ]; then
-            echo "No updated changelogs or changesets found. Skipping this step."
-            echo "release_notes=No updates in this release." >> $GITHUB_ENV
-            exit 0
+          if [ -z "$updated_changelogs" ]; then
+            echo "No updated changelogs found."
+
+            # Check if only empty changesets are present
+            empty_changesets=true
+            for changeset in $updated_changesets; do
+              content=$(cat "$changeset")
+              if [ "$(echo "$content" | grep -v '^---$')" ]; then
+                empty_changesets=false
+                break
+              fi
+            done
+
+            if [ "$empty_changesets" = true ]; then
+              echo "Only empty changesets detected. Skipping this step."
+              echo "release_notes=No updates in this release." >> $GITHUB_ENV
+              exit 0
+            fi
           fi
 
           echo "Updated Changelogs:"
@@ -159,30 +173,6 @@ jobs:
 
             # Combine the version and change details
             release_notes+="$change_details\n\n"
-          done
-
-          # Handle empty changesets (e.g., `---`)
-          for changeset in $updated_changesets; do
-            echo "Processing $changeset"
-
-            # Check if the file exists
-            if [ ! -f "$changeset" ]; then
-              echo "File not found: $changeset. Skipping."
-              continue
-            fi
-
-            # Debug: Output the content of the changeset
-            echo "Content of $changeset:"
-            cat "$changeset"
-
-            # Skip empty changesets (contain only `---`)
-            if grep -q "^---$" "$changeset" && [ "$(wc -l < "$changeset")" -eq 2 ]; then
-              echo "Empty changeset detected: $changeset. Skipping."
-              continue
-            fi
-
-            # Combine valid changeset content into release notes
-            release_notes+="$(cat "$changeset")\n\n"
           done
 
           # Debug final release notes
