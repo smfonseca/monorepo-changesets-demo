@@ -128,20 +128,31 @@ jobs:
             exit 0
           fi
 
+          echo "Updated Changelogs:"
+          echo "$updated_changelogs"
+
           # Initialize release notes
           release_notes=""
 
           # Extract the latest changes from each updated changelog
           for changelog in $updated_changelogs; do
+            echo "Processing $changelog"
+
             # Extract version heading and its content (from first ## to second ##)
             latest_entry=$(awk '/^## / {if (flag) exit; flag=1; print; next} flag {print}' "$changelog")
+            echo "Latest Entry: $latest_entry"
 
             # Extract change details (everything after the version heading)
             change_details=$(echo "$latest_entry" | tail -n +2)
+            echo "Change Details: $change_details"
 
             # Combine the version and change details
             release_notes+="$change_details\n\n"
           done
+
+          # Debug final release notes
+          echo "Final Release Notes:"
+          echo "$release_notes"
 
           # Remove trailing newlines or spaces
           release_notes=$(echo "$release_notes" | sed 's/[[:space:]]*$//')
@@ -157,7 +168,6 @@ jobs:
           echo "release_notes<<EOF" >> $GITHUB_ENV
           echo -e "$release_notes" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
-
 
       - name: Create GitHub Releases
         if: env.release_notes != 'No meaningful changes detected. Skipping release.'
