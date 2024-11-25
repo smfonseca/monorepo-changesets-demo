@@ -57,25 +57,28 @@ jobs:
       - name: 🏗️ Preview Release
         id: changeset-status
         run: |
-          # Run changeset status and capture the output
-          output=$(pnpm changeset status --verbose)
+          # Generate the status JSON
+          pnpm changeset status --output changeset-status.json
 
-          echo "Changeset status output:"
-          echo "$output"
+          # Check if the JSON file exists
+          if [ ! -f changeset-status.json ]; then
+            echo "changeset-status.json file not found. Exiting."
+            echo "should_skip=true" >> $GITHUB_ENV
+            exit 0
+          fi
 
-          # Check for "NO packages" in patch, minor, and major
-          no_patch=$(echo "$output" | grep -q "Running release would release NO packages as a patch"; echo $?)
-          no_minor=$(echo "$output" | grep -q "Running release would release NO packages as a minor"; echo $?)
-          no_major=$(echo "$output" | grep -q "Running release would release NO packages as a major"; echo $?)
+          # Parse the JSON to check for releases
+          releases=$(jq '.releases | length' changeset-status.json)
 
-          # If all types are "NO packages," skip further steps
-          if [ $no_patch -eq 0 ] && [ $no_minor -eq 0 ] && [ $no_major -eq 0 ]; then
+          if [ "$releases" -eq 0 ]; then
             echo "No packages to release. Skipping further steps."
             echo "should_skip=true" >> $GITHUB_ENV
           else
             echo "Packages to release found. Proceeding."
             echo "should_skip=false" >> $GITHUB_ENV
           fi
+        env:
+          PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
 
       - name: 🏗️ Bump Version and Apply Changesets
         run: |
