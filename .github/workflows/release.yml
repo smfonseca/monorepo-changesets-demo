@@ -81,6 +81,7 @@ jobs:
           PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
 
       - name: 🏗️ Apply Changesets
+        if: env.should_skip != 'true'
         run: |
           pnpm changeset version
 
@@ -94,10 +95,10 @@ jobs:
           packages_with_versions=$(paste -d':' <(echo "$updated_packages") <(echo "$updated_versions") | sed 's/:/: /g' | tr '\n' ', ' | sed 's/,/, /g')
 
           # Generate the commit message
-          if [ -n "$packages_with_versions" ]; then
+          if [ "$packages_with_versions" ]; then
             commit_message="chore(release): $packages_with_versions [skip ci]"
           else
-            commit_message="chore(release): apply changesets [skip ci]"
+            commit_message="chore(release): applied changesets [skip ci]"
           fi
 
           # Configure git and create a commit
