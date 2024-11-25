@@ -64,7 +64,7 @@ jobs:
           echo "$output"
 
           # Check if there are no releases
-          if echo "$output" | grep -q "NO releases"; then
+          if echo "$output" | grep -q "NO packages"; then
             echo "No packages to release. Skipping further steps."
             echo "should_skip=true" >> $GITHUB_ENV
           else
