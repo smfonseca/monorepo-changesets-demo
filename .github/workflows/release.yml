@@ -138,8 +138,19 @@ jobs:
           for changelog in $updated_changelogs; do
             echo "Processing $changelog"
 
+            # Check if the file exists
+            if [ ! -f "$changelog" ]; then
+              echo "File not found: $changelog"
+              continue
+            fi
+
             # Extract version heading and its content (from first ## to second ##)
             latest_entry=$(awk '/^## / {if (flag) exit; flag=1; print; next} flag {print}' "$changelog")
+            if [ -z "$latest_entry" ]; then
+              echo "No valid changelog entry found in $changelog"
+              continue
+            fi
+
             echo "Latest Entry: $latest_entry"
 
             # Extract change details (everything after the version heading)
