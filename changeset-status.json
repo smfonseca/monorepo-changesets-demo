@@ -1,4 +1,25 @@
 {
-  "changesets": [],
-  "releases": []
+  "changesets": [
+    {
+      "releases": [
+        {
+          "name": "@smfonseca/components",
+          "type": "patch"
+        }
+      ],
+      "summary": "test",
+      "id": "strange-roses-lick"
+    }
+  ],
+  "releases": [
+    {
+      "name": "@smfonseca/components",
+      "type": "patch",
+      "oldVersion": "4.2.8",
+      "changesets": [
+        "strange-roses-lick"
+      ],
+      "newVersion": "4.2.9"
+    }
+  ]
 }
