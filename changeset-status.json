@@ -1,44 +1,4 @@
 {
-  "changesets": [
-    {
-      "releases": [
-        {
-          "name": "@smfonseca/tokens",
-          "type": "patch"
-        }
-      ],
-      "summary": "test 2",
-      "id": "nine-radios-crash"
-    },
-    {
-      "releases": [
-        {
-          "name": "@smfonseca/components",
-          "type": "patch"
-        }
-      ],
-      "summary": "test",
-      "id": "small-masks-happen"
-    }
-  ],
-  "releases": [
-    {
-      "name": "@smfonseca/tokens",
-      "type": "patch",
-      "oldVersion": "1.0.1",
-      "changesets": [
-        "nine-radios-crash"
-      ],
-      "newVersion": "1.0.2"
-    },
-    {
-      "name": "@smfonseca/components",
-      "type": "patch",
-      "oldVersion": "4.2.4",
-      "changesets": [
-        "small-masks-happen"
-      ],
-      "newVersion": "4.2.5"
-    }
-  ]
+  "changesets": [],
+  "releases": []
 }
