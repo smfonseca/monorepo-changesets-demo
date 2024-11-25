@@ -1,4 +1,25 @@
 {
-  "changesets": [],
-  "releases": []
+  "changesets": [
+    {
+      "releases": [
+        {
+          "name": "@smfonseca/components",
+          "type": "patch"
+        }
+      ],
+      "summary": "test",
+      "id": "green-pets-kiss"
+    }
+  ],
+  "releases": [
+    {
+      "name": "@smfonseca/components",
+      "type": "patch",
+      "oldVersion": "4.2.7",
+      "changesets": [
+        "green-pets-kiss"
+      ],
+      "newVersion": "4.2.8"
+    }
+  ]
 }
