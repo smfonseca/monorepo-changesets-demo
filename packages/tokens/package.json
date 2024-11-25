@@ -1,7 +1,7 @@
 {
   "name": "@smfonseca/tokens",
   "repository": "https://github.com/smfonseca/monorepo-changesets-demo.git",
-  "description": "Design tokens for the monorepo-changesets-demo project",
+  "description": "Design tokens for the monorepo-changesets-demo",
   "version": "1.0.2",
   "publishConfig": {
     "access": "public",
