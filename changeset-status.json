@@ -1,25 +1,4 @@
 {
-  "changesets": [
-    {
-      "releases": [
-        {
-          "name": "@smfonseca/components",
-          "type": "patch"
-        }
-      ],
-      "summary": "test",
-      "id": "violet-turkeys-burn"
-    }
-  ],
-  "releases": [
-    {
-      "name": "@smfonseca/components",
-      "type": "patch",
-      "oldVersion": "4.2.6",
-      "changesets": [
-        "violet-turkeys-burn"
-      ],
-      "newVersion": "4.2.7"
-    }
-  ]
+  "changesets": [],
+  "releases": []
 }
