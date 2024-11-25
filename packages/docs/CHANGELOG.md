@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/docs
 
+## 3.6.1
+
+### Patch Changes
+
+- [`9673374`](https://github.com/smfonseca/monorepo-changesets-demo/commit/96733743e9cf5ed4a452767f627a402d70772630) Thanks [@smfonseca](https://github.com/smfonseca)! - docs patch
+
 ## 3.6.0
 
 ### Minor Changes

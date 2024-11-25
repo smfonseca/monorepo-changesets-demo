@@ -3,42 +3,61 @@
     {
       "releases": [
         {
-          "name": "@smfonseca/components",
-          "type": "patch"
-        }
-      ],
-      "summary": "test 2",
-      "id": "afraid-cats-tie"
-    },
-    {
-      "releases": [
-        {
           "name": "@smfonseca/tokens",
           "type": "patch"
         }
       ],
-      "summary": "teste 3",
-      "id": "thirty-apricots-knock"
+      "summary": "tokens patch",
+      "id": "silly-onions-marry"
+    },
+    {
+      "releases": [
+        {
+          "name": "@smfonseca/components",
+          "type": "patch"
+        }
+      ],
+      "summary": "components patch",
+      "id": "tasty-parrots-roll"
+    },
+    {
+      "releases": [
+        {
+          "name": "@smfonseca/docs",
+          "type": "patch"
+        }
+      ],
+      "summary": "docs patch",
+      "id": "weak-hairs-march"
     }
   ],
   "releases": [
     {
-      "name": "@smfonseca/components",
-      "type": "patch",
-      "oldVersion": "4.2.9",
-      "changesets": [
-        "afraid-cats-tie"
-      ],
-      "newVersion": "4.2.10"
-    },
-    {
       "name": "@smfonseca/tokens",
       "type": "patch",
-      "oldVersion": "1.0.3",
+      "oldVersion": "1.0.4",
       "changesets": [
-        "thirty-apricots-knock"
+        "silly-onions-marry"
       ],
-      "newVersion": "1.0.4"
+      "newVersion": "1.0.5"
+    },
+    {
+      "name": "@smfonseca/components",
+      "type": "patch",
+      "oldVersion": "4.2.10",
+      "changesets": [
+        "tasty-parrots-roll"
+      ],
+      "newVersion": "4.2.11"
+    },
+    {
+      "name": "@smfonseca/docs",
+      "type": "patch",
+      "oldVersion": "3.6.0",
+      "changesets": [
+        "weak-hairs-march"
+      ],
+      "newVersion": "3.6.1"
     }
   ]
 }
