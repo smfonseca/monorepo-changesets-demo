@@ -160,7 +160,7 @@ jobs:
           # Initialize release notes per package
           release_notes=""
 
-          # Extract the latest changes for each package
+          # Extract the latest changes for each updated changelog
           for changelog in $updated_changelogs; do
             echo "Processing $changelog"
 
@@ -171,16 +171,17 @@ jobs:
             echo "Content of $changelog:"
             cat "$changelog"
 
-            # Extract version heading and its content (from first ## to second ##)
+            # Extract version heading and its content (from the first ## to the next ##)
             latest_entry=$(awk '/^## / {if (flag) exit; flag=1; print; next} flag {print}' "$changelog")
             if [ -z "$latest_entry" ]; then
               echo "No valid changelog entry found in $changelog. Skipping."
               continue
             fi
 
+            # Debug: Display extracted entry
             echo "Latest Entry for $package_name: $latest_entry"
 
-            # Add the package-specific release notes
+            # Format the release notes for this package
             release_notes+="$package_name:\n$latest_entry\n\n"
           done
 
