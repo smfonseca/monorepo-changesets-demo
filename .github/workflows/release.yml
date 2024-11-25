@@ -171,15 +171,12 @@ jobs:
             echo "Content of $changelog:"
             cat "$changelog"
 
-            # Extract version heading and its content (from the first ## to the next ##)
-            latest_entry=$(awk '/^## / {if (flag) exit; flag=1; print; next} flag {print}' "$changelog")
+            # Extract content between the first and second `##` headings
+            latest_entry=$(awk '/^## / {if (flag) exit; flag=1; next} flag {print}' "$changelog")
             if [ -z "$latest_entry" ]; then
               echo "No valid changelog entry found in $changelog. Skipping."
               continue
             fi
-
-            # Debug: Display extracted entry
-            echo "Latest Entry for $package_name: $latest_entry"
 
             # Format the release notes for this package
             release_notes+="$package_name:\n$latest_entry\n\n"
@@ -200,22 +197,16 @@ jobs:
       - name: Create GitHub Releases Per Package
         if: env.should_skip != 'true'
         run: |
-          # Loop through each tag pointing at HEAD
           for tag in $(git tag --points-at HEAD); do
-            # Extract release notes for the corresponding package
             package_name=$(echo "$tag" | sed 's/@smfonseca\///' | cut -d'@' -f1)
             package_notes=$(echo -e "$release_notes" | awk -v package="$package_name" 'BEGIN {flag=0} $0 ~ package":" {flag=1; next} /^$/{flag=0} flag')
 
             echo "Creating release for $tag with notes:"
             echo "$package_notes"
 
-            # Create the release
             gh release create "$tag" \
               --title "$tag" \
               --notes "$package_notes"
           done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
-
