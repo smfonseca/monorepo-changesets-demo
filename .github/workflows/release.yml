@@ -85,16 +85,20 @@ jobs:
           pnpm changeset version
 
           # Extract updated package names
-          updated_packages=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"name\":' {} | sed -E 's/.*\"name\": \"@smfonseca\/([^\"]+)\",/\\1/'")
+          updated_packages=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"name\":' {} | sed -E 's/.*\"name\": \"@smfonseca\/([^\"]+)\",/\\1/' || true")
 
           # Extract updated versions (remove "version" text and quotes)
-          updated_versions=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"version\":' {} | sed -E 's/.*\"version\": \"([^\"]+)\".*/\\1/'")
+          updated_versions=$(git diff --name-only | grep "package.json" | xargs -I {} sh -c "grep '\"version\":' {} | sed -E 's/.*\"version\": \"([^\"]+)\".*/\\1/' || true")
 
           # Combine package names and versions into a single string with a space after the colon
-          packages_with_versions=$(paste -d':' <(echo "$updated_packages") <(echo "$updated_versions") | sed 's/:/: /g' | tr '\n' ', ' | sed 's/,/, /g')
+          if [ -n "$updated_packages" ] && [ -n "$updated_versions" ]; then
+            packages_with_versions=$(paste -d':' <(echo "$updated_packages") <(echo "$updated_versions") | sed 's/:/: /g' | tr '\n' ', ' | sed 's/,/, /g')
+          else
+            packages_with_versions=""
+          fi
 
           # Generate the commit message
-          if [ "$packages_with_versions" ]; then
+          if [ -n "$packages_with_versions" ]; then
             commit_message="chore(release): $packages_with_versions [skip ci]"
           else
             commit_message="chore(release): applied changesets [skip ci]"
