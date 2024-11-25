@@ -50,15 +50,6 @@ jobs:
         run: |
           echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
 
-      - name: 🔆 Cache pnpm modules
-        uses: actions/cache@v3
-        id: pnpm-cache
-        with:
-          path: ${{ steps.get-pnpm-cache-dir.outputs.pnpm_cache_dir }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
       - name: 🧩 Install Dependencies
         id: install-dependencies
         run: pnpm install
@@ -120,13 +111,14 @@ jobs:
       - name: Generate Clean Release Notes
         id: release-notes
         run: |
-          # Find all updated CHANGELOG.md files in the last commit
+          # Find all files changed in the last commit
           echo "Files changed in this commit:"
           git diff --name-only HEAD~1 HEAD
 
+          # Identify updated CHANGELOG.md files
           updated_changelogs=$(git diff --name-only HEAD~1 HEAD | grep "CHANGELOG.md")
           if [ -z "$updated_changelogs" ]; then
-            echo "No updated changelogs found."
+            echo "No updated changelogs found. Skipping this step."
             echo "release_notes=No updates in this release." >> $GITHUB_ENV
             exit 0
           fi
@@ -143,7 +135,7 @@ jobs:
 
             # Check if the file exists
             if [ ! -f "$changelog" ]; then
-              echo "File not found: $changelog"
+              echo "File not found: $changelog. Skipping."
               continue
             fi
 
@@ -154,7 +146,7 @@ jobs:
             # Extract version heading and its content (from first ## to second ##)
             latest_entry=$(awk '/^## / {if (flag) exit; flag=1; print; next} flag {print}' "$changelog")
             if [ -z "$latest_entry" ]; then
-              echo "No valid changelog entry found in $changelog"
+              echo "No valid changelog entry found in $changelog. Skipping."
               continue
             fi
 
