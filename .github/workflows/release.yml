@@ -81,6 +81,7 @@ jobs:
           PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
 
       - name: 🏗️ Bump Version and Apply Changesets
+        if: env.should_skip != 'true'
         run: |
           pnpm changeset version
 
@@ -114,6 +115,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 📦 Publish to NPM
+        if: env.should_skip != 'true'
         run: |
           pnpm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
           pnpm changeset publish -r
@@ -121,6 +123,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Push Tags to GitHub
+        if: env.should_skip != 'true'
         run: |
           git push --tags
         env:
