@@ -55,7 +55,22 @@ jobs:
         run: pnpm install
 
       - name: 🏗️ Preview Release
-        run: pnpm changeset status --verbose
+        id: changeset-status
+        run: |
+          # Run changeset status and capture the output
+          output=$(pnpm changeset status --verbose)
+
+          echo "Changeset status output:"
+          echo "$output"
+
+          # Check if there are no releases
+          if echo "$output" | grep -q "NO releases"; then
+            echo "No packages to release. Skipping further steps."
+            echo "should_skip=true" >> $GITHUB_ENV
+          else
+            echo "Releases found. Proceeding."
+            echo "should_skip=false" >> $GITHUB_ENV
+          fi
 
       - name: 🏗️ Bump Version and Apply Changesets
         run: |
@@ -109,6 +124,7 @@ jobs:
           sudo apt-get install gh -y
 
       - name: Generate Clean Release Notes
+        if: env.should_skip != 'true'
         id: release-notes
         run: |
           # Find all files changed in the last commit
@@ -195,7 +211,7 @@ jobs:
           echo "EOF" >> $GITHUB_ENV
 
       - name: Create GitHub Releases
-        if: env.release_notes != 'No meaningful changes detected. Skipping release.'
+        if: env.should_skip != 'true'
         run: |
           for tag in $(git tag --points-at HEAD); do
             gh release create "$tag" \
