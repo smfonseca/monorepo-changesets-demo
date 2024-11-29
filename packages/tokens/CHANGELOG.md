@@ -1,5 +1,11 @@
 # @smfonseca/tokens
 
+## 1.0.7
+
+### Patch Changes
+
+- [#70](https://github.com/smfonseca/monorepo-changesets-demo/pull/70) [`af6fdeb`](https://github.com/smfonseca/monorepo-changesets-demo/commit/af6fdebbb2443bde5d72493ba321485ca68a442a) Thanks [@smfonseca](https://github.com/smfonseca)! - test
+
 ## 1.0.6
 
 ### Patch Changes

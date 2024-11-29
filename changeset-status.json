@@ -3,23 +3,23 @@
     {
       "releases": [
         {
-          "name": "@smfonseca/components",
+          "name": "@smfonseca/tokens",
           "type": "patch"
         }
       ],
       "summary": "test",
-      "id": "tiny-wombats-reflect"
+      "id": "fluffy-ties-hammer"
     }
   ],
   "releases": [
     {
-      "name": "@smfonseca/components",
+      "name": "@smfonseca/tokens",
       "type": "patch",
-      "oldVersion": "4.2.23",
+      "oldVersion": "1.0.6",
       "changesets": [
-        "tiny-wombats-reflect"
+        "fluffy-ties-hammer"
       ],
-      "newVersion": "4.2.24"
+      "newVersion": "1.0.7"
     }
   ]
 }
