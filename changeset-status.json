@@ -8,18 +8,18 @@
         }
       ],
       "summary": "test",
-      "id": "wet-fans-jog"
+      "id": "hip-garlics-decide"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "4.2.14",
+      "oldVersion": "4.2.15",
       "changesets": [
-        "wet-fans-jog"
+        "hip-garlics-decide"
       ],
-      "newVersion": "4.2.15"
+      "newVersion": "4.2.16"
     }
   ]
 }
