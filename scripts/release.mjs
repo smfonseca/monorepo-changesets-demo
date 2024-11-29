@@ -97,11 +97,13 @@ async function main() {
     console.log('Creating GitHub Releases...');
     const tags = execSync('git tag --points-at HEAD', { encoding: 'utf-8' }).trim().split('\n');
     for (const tag of tags) {
-      const packageName = updatedPackages.find((name) => tag.includes(name)) || tag;
-      const releaseNotes = releaseNotesByPackage.find((pkg) => pkg.packageName === packageName)?.notes;
+      const releaseNotes = releaseNotesByPackage
+        .filter((pkg) => tag.includes(pkg.packageName))
+        .map((pkg) => pkg.notes)
+        .join('\n');
 
       if (!releaseNotes) {
-        console.log(`No release notes found for ${packageName}. Skipping.`);
+        console.log(`No release notes found for tag ${tag}. Skipping.`);
         continue;
       }
 
