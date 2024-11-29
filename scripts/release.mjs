@@ -5,8 +5,6 @@ import { Octokit } from '@octokit/rest';
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const NPM_TOKEN = process.env.NPM_TOKEN;
-// const REPO_OWNER = process.env.GITHUB_REPOSITORY.split('/')[0];
-// const REPO_NAME = process.env.GITHUB_REPOSITORY.split('/')[1];
 
 const octokit = new Octokit({ auth: GITHUB_TOKEN });
 
@@ -113,8 +111,8 @@ async function main() {
       console.log(releaseNotes);
 
       await octokit.rest.repos.createRelease({
-        owner: REPO_OWNER,
-        repo: REPO_NAME,
+        owner: "smfonseca",
+        repo: "monorepo-changesets-demo",
         tag_name: tag,
         name: tag,
         body: releaseNotes,
