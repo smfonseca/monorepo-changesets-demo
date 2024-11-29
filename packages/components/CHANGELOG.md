@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/components
 
+## 4.2.12
+
+### Patch Changes
+
+- [`5b2d1d2`](https://github.com/smfonseca/monorepo-changesets-demo/commit/5b2d1d2ca2bef37f086afb25220b6b50df5bd5a4) Thanks [@smfonseca](https://github.com/smfonseca)! - test
+
 ## 4.2.11
 
 ### Patch Changes

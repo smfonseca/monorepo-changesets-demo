@@ -1,0 +1,25 @@
+{
+  "changesets": [
+    {
+      "releases": [
+        {
+          "name": "@smfonseca/components",
+          "type": "patch"
+        }
+      ],
+      "summary": "test",
+      "id": "grumpy-lies-watch"
+    }
+  ],
+  "releases": [
+    {
+      "name": "@smfonseca/components",
+      "type": "patch",
+      "oldVersion": "4.2.11",
+      "changesets": [
+        "grumpy-lies-watch"
+      ],
+      "newVersion": "4.2.12"
+    }
+  ]
+}
