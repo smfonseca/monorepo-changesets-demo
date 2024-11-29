@@ -96,7 +96,6 @@ async function main() {
     console.log('Creating GitHub Releases...');
     const tags = execSync('git tag --points-at HEAD', { encoding: 'utf-8' }).trim().split('\n');
     for (const tag of tags) {
-      console.log("tag:", tag)
       const releaseNotes = releaseNotesByPackage
         .filter((pkg) => tag.includes(pkg.packageName))
         .map((pkg) => pkg.notes)
