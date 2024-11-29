@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/components
 
+## 5.0.0
+
+### Major Changes
+
+- [`e4597ef`](https://github.com/smfonseca/monorepo-changesets-demo/commit/e4597ef3b1dfb90918808e63b7cb810829fd0a89) Thanks [@github-actions[bot]](https://github.com/github-actions%5Bbot%5D)! - test major, minor, patch
+
 ## 4.3.0
 
 ### Minor Changes

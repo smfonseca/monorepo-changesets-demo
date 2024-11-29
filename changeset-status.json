@@ -4,40 +4,59 @@
       "releases": [
         {
           "name": "@smfonseca/components",
-          "type": "minor"
+          "type": "major"
         },
         {
           "name": "@smfonseca/tokens",
+          "type": "minor"
+        },
+        {
+          "name": "@smfonseca/docs",
           "type": "patch"
         }
       ],
-      "summary": "minor bump to components\npatch to tokens",
-      "id": "new-pandas-wash"
+      "summary": "test major, minor, patch",
+      "id": "proud-tomatoes-repeat"
     },
     {
-      "releases": [],
-      "summary": "",
-      "id": "rude-students-know"
+      "releases": [
+        {
+          "name": "@smfonseca/docs",
+          "type": "minor"
+        }
+      ],
+      "summary": "docs minor",
+      "id": "silent-suits-count"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
-      "type": "minor",
-      "oldVersion": "4.2.24",
+      "type": "major",
+      "oldVersion": "4.3.0",
       "changesets": [
-        "new-pandas-wash"
+        "proud-tomatoes-repeat"
       ],
-      "newVersion": "4.3.0"
+      "newVersion": "5.0.0"
     },
     {
       "name": "@smfonseca/tokens",
-      "type": "patch",
-      "oldVersion": "1.0.7",
+      "type": "minor",
+      "oldVersion": "1.0.8",
       "changesets": [
-        "new-pandas-wash"
+        "proud-tomatoes-repeat"
       ],
-      "newVersion": "1.0.8"
+      "newVersion": "1.1.0"
+    },
+    {
+      "name": "@smfonseca/docs",
+      "type": "minor",
+      "oldVersion": "3.6.1",
+      "changesets": [
+        "proud-tomatoes-repeat",
+        "silent-suits-count"
+      ],
+      "newVersion": "3.7.0"
     }
   ]
 }
