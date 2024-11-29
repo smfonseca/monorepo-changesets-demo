@@ -8,18 +8,18 @@
         }
       ],
       "summary": "test",
-      "id": "forty-sloths-look"
+      "id": "mighty-moons-buy"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "4.2.20",
+      "oldVersion": "4.2.21",
       "changesets": [
-        "forty-sloths-look"
+        "mighty-moons-buy"
       ],
-      "newVersion": "4.2.21"
+      "newVersion": "4.2.22"
     }
   ]
 }
