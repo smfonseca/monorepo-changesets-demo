@@ -37,6 +37,8 @@ async function main() {
     .split('\n')
     .filter((file) => file.includes('package.json'));
 
+    console.log('changedFiles:', changedFiles)
+
     changedFiles.forEach((file) => {
       const packageJsonPath = path.resolve(file);
       const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
@@ -70,55 +72,55 @@ async function main() {
     execSync(`pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"`, { stdio: 'inherit' });
     execSync('pnpm changeset publish -r', { stdio: 'inherit' });
 
-    console.log('Pushing tags...');
-    execSync('git push --tags', { stdio: 'inherit' });
+    // console.log('Pushing tags...');
+    // execSync('git push --tags', { stdio: 'inherit' });
 
-    console.log('Generating Release Notes...');
-    const updatedChangelogs = execSync('git diff --name-only HEAD~1 HEAD | grep CHANGELOG.md || true', {
-      encoding: 'utf-8',
-    }).trim();
+    // console.log('Generating Release Notes...');
+    // const updatedChangelogs = execSync('git diff --name-only HEAD~1 HEAD | grep CHANGELOG.md || true', {
+    //   encoding: 'utf-8',
+    // }).trim();
 
-    if (!updatedChangelogs) {
-      console.log('No updated changelogs found. Skipping release notes creation.');
-      return;
-    }
+    // if (!updatedChangelogs) {
+    //   console.log('No updated changelogs found. Skipping release notes creation.');
+    //   return;
+    // }
 
-    const releaseNotesByPackage = [];
-    updatedChangelogs.split('\n').forEach((changelogPath) => {
-      const packageName = path.basename(path.dirname(changelogPath));
-      const changelogContent = fs.readFileSync(changelogPath, 'utf-8');
-      const latestEntry = changelogContent.split('## ')[1]?.split('## ')[0]?.trim();
+    // const releaseNotesByPackage = [];
+    // updatedChangelogs.split('\n').forEach((changelogPath) => {
+    //   const packageName = path.basename(path.dirname(changelogPath));
+    //   const changelogContent = fs.readFileSync(changelogPath, 'utf-8');
+    //   const latestEntry = changelogContent.split('## ')[1]?.split('## ')[0]?.trim();
 
-      if (latestEntry) {
-        releaseNotesByPackage.push({
-          packageName,
-          notes: latestEntry,
-        });
-      }
-    });
+    //   if (latestEntry) {
+    //     releaseNotesByPackage.push({
+    //       packageName,
+    //       notes: latestEntry,
+    //     });
+    //   }
+    // });
 
-    console.log('Creating GitHub Releases...');
-    const tags = execSync('git tag --points-at HEAD', { encoding: 'utf-8' }).trim().split('\n');
-    for (const tag of tags) {
-      const packageName = updatedPackages.find((name) => tag.includes(name)) || tag;
-      const releaseNotes = releaseNotesByPackage.find((pkg) => pkg.packageName === packageName)?.notes;
+    // console.log('Creating GitHub Releases...');
+    // const tags = execSync('git tag --points-at HEAD', { encoding: 'utf-8' }).trim().split('\n');
+    // for (const tag of tags) {
+    //   const packageName = updatedPackages.find((name) => tag.includes(name)) || tag;
+    //   const releaseNotes = releaseNotesByPackage.find((pkg) => pkg.packageName === packageName)?.notes;
 
-      if (!releaseNotes) {
-        console.log(`No release notes found for ${packageName}. Skipping.`);
-        continue;
-      }
+    //   if (!releaseNotes) {
+    //     console.log(`No release notes found for ${packageName}. Skipping.`);
+    //     continue;
+    //   }
 
-      console.log(`Creating release for ${tag} with notes:`);
-      console.log(releaseNotes);
+    //   console.log(`Creating release for ${tag} with notes:`);
+    //   console.log(releaseNotes);
 
-      await octokit.rest.repos.createRelease({
-        owner: REPO_OWNER,
-        repo: REPO_NAME,
-        tag_name: tag,
-        name: tag,
-        body: releaseNotes,
-      });
-    }
+    //   await octokit.rest.repos.createRelease({
+    //     owner: REPO_OWNER,
+    //     repo: REPO_NAME,
+    //     tag_name: tag,
+    //     name: tag,
+    //     body: releaseNotes,
+    //   });
+    // }
 
     console.log('All done!');
   } catch (error) {

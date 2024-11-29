@@ -7,19 +7,19 @@
           "type": "patch"
         }
       ],
-      "summary": "test",
-      "id": "grumpy-lies-watch"
+      "summary": "oi",
+      "id": "young-poets-perform"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "4.2.11",
+      "oldVersion": "4.2.12",
       "changesets": [
-        "grumpy-lies-watch"
+        "young-poets-perform"
       ],
-      "newVersion": "4.2.12"
+      "newVersion": "4.2.13"
     }
   ]
 }
