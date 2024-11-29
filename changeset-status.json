@@ -8,18 +8,18 @@
         }
       ],
       "summary": "test",
-      "id": "mighty-moons-buy"
+      "id": "mean-geese-smash"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "4.2.21",
+      "oldVersion": "4.2.22",
       "changesets": [
-        "mighty-moons-buy"
+        "mean-geese-smash"
       ],
-      "newVersion": "4.2.22"
+      "newVersion": "4.2.23"
     }
   ]
 }

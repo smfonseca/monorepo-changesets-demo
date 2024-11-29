@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/components
 
+## 4.2.23
+
+### Patch Changes
+
+- [`b119377`](https://github.com/smfonseca/monorepo-changesets-demo/commit/b119377ee169d70baf8c56102227cd080a42cc89) Thanks [@github-actions[bot]](https://github.com/github-actions%5Bbot%5D)! - test
+
 ## 4.2.22
 
 ### Patch Changes
