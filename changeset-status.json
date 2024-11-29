@@ -8,18 +8,18 @@
         }
       ],
       "summary": "test",
-      "id": "hip-garlics-decide"
+      "id": "two-zebras-punch"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "4.2.15",
+      "oldVersion": "4.2.16",
       "changesets": [
-        "hip-garlics-decide"
+        "two-zebras-punch"
       ],
-      "newVersion": "4.2.16"
+      "newVersion": "4.2.17"
     }
   ]
 }
