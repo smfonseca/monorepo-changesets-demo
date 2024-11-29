@@ -8,18 +8,18 @@
         }
       ],
       "summary": "test",
-      "id": "mean-geese-smash"
+      "id": "tiny-wombats-reflect"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "4.2.22",
+      "oldVersion": "4.2.23",
       "changesets": [
-        "mean-geese-smash"
+        "tiny-wombats-reflect"
       ],
-      "newVersion": "4.2.23"
+      "newVersion": "4.2.24"
     }
   ]
 }
