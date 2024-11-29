@@ -8,18 +8,18 @@
         }
       ],
       "summary": "test",
-      "id": "two-zebras-punch"
+      "id": "clean-ligers-breathe"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "4.2.16",
+      "oldVersion": "4.2.17",
       "changesets": [
-        "two-zebras-punch"
+        "clean-ligers-breathe"
       ],
-      "newVersion": "4.2.17"
+      "newVersion": "4.2.18"
     }
   ]
 }
