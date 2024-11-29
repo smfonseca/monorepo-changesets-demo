@@ -3,23 +3,23 @@
     {
       "releases": [
         {
-          "name": "@smfonseca/tokens",
+          "name": "@smfonseca/components",
           "type": "patch"
         }
       ],
       "summary": "test",
-      "id": "thick-rockets-brush"
+      "id": "thin-ducks-peel"
     }
   ],
   "releases": [
     {
-      "name": "@smfonseca/tokens",
+      "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "1.0.5",
+      "oldVersion": "4.2.13",
       "changesets": [
-        "thick-rockets-brush"
+        "thin-ducks-peel"
       ],
-      "newVersion": "1.0.6"
+      "newVersion": "4.2.14"
     }
   ]
 }
