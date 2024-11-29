@@ -3,23 +3,41 @@
     {
       "releases": [
         {
+          "name": "@smfonseca/components",
+          "type": "minor"
+        },
+        {
           "name": "@smfonseca/tokens",
           "type": "patch"
         }
       ],
-      "summary": "test",
-      "id": "fluffy-ties-hammer"
+      "summary": "minor bump to components\npatch to tokens",
+      "id": "new-pandas-wash"
+    },
+    {
+      "releases": [],
+      "summary": "",
+      "id": "rude-students-know"
     }
   ],
   "releases": [
     {
+      "name": "@smfonseca/components",
+      "type": "minor",
+      "oldVersion": "4.2.24",
+      "changesets": [
+        "new-pandas-wash"
+      ],
+      "newVersion": "4.3.0"
+    },
+    {
       "name": "@smfonseca/tokens",
       "type": "patch",
-      "oldVersion": "1.0.6",
+      "oldVersion": "1.0.7",
       "changesets": [
-        "fluffy-ties-hammer"
+        "new-pandas-wash"
       ],
-      "newVersion": "1.0.7"
+      "newVersion": "1.0.8"
     }
   ]
 }

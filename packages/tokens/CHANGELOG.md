@@ -1,5 +1,12 @@
 # @smfonseca/tokens
 
+## 1.0.8
+
+### Patch Changes
+
+- [#73](https://github.com/smfonseca/monorepo-changesets-demo/pull/73) [`73b773d`](https://github.com/smfonseca/monorepo-changesets-demo/commit/73b773d89bcdb73059e9421bf31c1e51c2d9e1db) Thanks [@smfonseca](https://github.com/smfonseca)! - minor bump to components
+  patch to tokens
+
 ## 1.0.7
 
 ### Patch Changes
