@@ -88,7 +88,7 @@ async function main() {
     const releaseNotesByPackage = updatedChangelogs
       .split('\n')
       .map((changelog) => {
-        const packageName = changelog.split('/')[0];
+        const packageName = changelog.split('/')[1];
         const notes = `Please refer to [CHANGELOG.md](https://solid-design-system.fe.union-investment.de/docs/?path=/docs/packages-${packageName}-changelog--docs) for details.`;
 
         console.log("packageName:", packageName)
