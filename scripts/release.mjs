@@ -78,7 +78,7 @@ async function main() {
       encoding: 'utf-8',
     }).trim();
 
-    console.log("updatedChangelogs:",updatedChangelogs)
+    console.log("updatedChangelogs:", updatedChangelogs)
 
     if (!updatedChangelogs) {
       console.log('No updated changelogs found. Skipping release notes creation.');
