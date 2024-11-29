@@ -8,18 +8,18 @@
         }
       ],
       "summary": "test",
-      "id": "neat-feet-happen"
+      "id": "forty-sloths-look"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "4.2.19",
+      "oldVersion": "4.2.20",
       "changesets": [
-        "neat-feet-happen"
+        "forty-sloths-look"
       ],
-      "newVersion": "4.2.20"
+      "newVersion": "4.2.21"
     }
   ]
 }
