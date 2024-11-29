@@ -13,7 +13,7 @@ const octokit = new Octokit({ auth: GITHUB_TOKEN });
 async function main() {
   try {
     console.log('Generating Changeset status...');
-    execSync('pnpm changeset status --output scripts/changeset-status.json', { stdio: 'inherit' });
+    execSync('pnpm changeset status --output changeset-status.json', { stdio: 'inherit' });
 
     if (!fs.existsSync('changeset-status.json')) {
       console.log('No changeset-status.json found. Exiting.');
