@@ -4,59 +4,27 @@
       "releases": [
         {
           "name": "@smfonseca/components",
-          "type": "major"
-        },
-        {
-          "name": "@smfonseca/tokens",
-          "type": "minor"
-        },
-        {
-          "name": "@smfonseca/docs",
           "type": "patch"
         }
       ],
-      "summary": "Bump all three packages",
-      "id": "tidy-turtles-appear"
+      "summary": "test",
+      "id": "cuddly-sheep-provide"
     },
     {
-      "releases": [
-        {
-          "name": "@smfonseca/tokens",
-          "type": "patch"
-        }
-      ],
-      "summary": "patch tokens",
-      "id": "tough-games-grow"
+      "releases": [],
+      "summary": "",
+      "id": "friendly-lobsters-give"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
-      "type": "major",
-      "oldVersion": "5.1.0",
-      "changesets": [
-        "tidy-turtles-appear"
-      ],
-      "newVersion": "6.0.0"
-    },
-    {
-      "name": "@smfonseca/tokens",
-      "type": "minor",
-      "oldVersion": "1.1.0",
-      "changesets": [
-        "tidy-turtles-appear",
-        "tough-games-grow"
-      ],
-      "newVersion": "1.2.0"
-    },
-    {
-      "name": "@smfonseca/docs",
       "type": "patch",
-      "oldVersion": "3.7.0",
+      "oldVersion": "6.0.0",
       "changesets": [
-        "tidy-turtles-appear"
+        "cuddly-sheep-provide"
       ],
-      "newVersion": "3.7.1"
+      "newVersion": "6.0.1"
     }
   ]
 }
