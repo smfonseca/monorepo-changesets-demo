@@ -8,23 +8,18 @@
         }
       ],
       "summary": "test",
-      "id": "cuddly-sheep-provide"
-    },
-    {
-      "releases": [],
-      "summary": "",
-      "id": "friendly-lobsters-give"
+      "id": "orange-masks-mix"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "6.0.0",
+      "oldVersion": "6.0.1",
       "changesets": [
-        "cuddly-sheep-provide"
+        "orange-masks-mix"
       ],
-      "newVersion": "6.0.1"
+      "newVersion": "6.0.2"
     }
   ]
 }
