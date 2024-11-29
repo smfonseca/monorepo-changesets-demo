@@ -48,7 +48,10 @@ async function main() {
       }
     });
 
-    const packagesWithVersions = updatedPackages.map((name, index) => `${name}: ${updatedVersions[index]}`).join(', ');
+    const sortedPackages = updatedPackages.map((name, index) => ({ name: name.split('/')[1], version: updatedVersions[index] }))
+      .sort((a, b) => a.name.localeCompare(b.name));
+
+    const packagesWithVersions = sortedPackages.map(pkg => `${pkg.name}: ${pkg.version}`).join(', ');
 
     console.log('Committing changes...');
     execSync('git config user.name "github-actions[bot]"');
