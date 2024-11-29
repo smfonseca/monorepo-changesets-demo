@@ -1,5 +1,15 @@
 # @monorepo-changesets-demo/components
 
+## 5.1.0
+
+### Minor Changes
+
+- [#74](https://github.com/smfonseca/monorepo-changesets-demo/pull/74) [`cee9d8b`](https://github.com/smfonseca/monorepo-changesets-demo/commit/cee9d8b12df694d725e853bfed4b557d2dc47e89) Thanks [@smfonseca](https://github.com/smfonseca)! - This makes a small change to components.
+
+  - change 1
+  - change 2
+  - change 3
+
 ## 5.0.0
 
 ### Major Changes

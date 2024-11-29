@@ -4,59 +4,22 @@
       "releases": [
         {
           "name": "@smfonseca/components",
-          "type": "major"
-        },
-        {
-          "name": "@smfonseca/tokens",
-          "type": "minor"
-        },
-        {
-          "name": "@smfonseca/docs",
-          "type": "patch"
-        }
-      ],
-      "summary": "test major, minor, patch",
-      "id": "proud-tomatoes-repeat"
-    },
-    {
-      "releases": [
-        {
-          "name": "@smfonseca/docs",
           "type": "minor"
         }
       ],
-      "summary": "docs minor",
-      "id": "silent-suits-count"
+      "summary": "This makes a small change to components.\n\n- change 1\n- change 2\n- change 3",
+      "id": "strange-boats-rush"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
-      "type": "major",
-      "oldVersion": "4.3.0",
-      "changesets": [
-        "proud-tomatoes-repeat"
-      ],
-      "newVersion": "5.0.0"
-    },
-    {
-      "name": "@smfonseca/tokens",
       "type": "minor",
-      "oldVersion": "1.0.8",
+      "oldVersion": "5.0.0",
       "changesets": [
-        "proud-tomatoes-repeat"
+        "strange-boats-rush"
       ],
-      "newVersion": "1.1.0"
-    },
-    {
-      "name": "@smfonseca/docs",
-      "type": "minor",
-      "oldVersion": "3.6.1",
-      "changesets": [
-        "proud-tomatoes-repeat",
-        "silent-suits-count"
-      ],
-      "newVersion": "3.7.0"
+      "newVersion": "5.1.0"
     }
   ]
 }
