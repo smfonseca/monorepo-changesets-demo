@@ -115,7 +115,7 @@ async function main() {
       await octokit.rest.repos.createRelease({
         owner: "smfonseca",
         repo: "monorepo-changesets-demo",
-        tag_name: tag.split('/')[1],
+        tag_name: tag,
         name: tag,
         body: releaseNotes,
       });
