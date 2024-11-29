@@ -3,23 +3,23 @@
     {
       "releases": [
         {
-          "name": "@smfonseca/components",
+          "name": "@smfonseca/tokens",
           "type": "patch"
         }
       ],
-      "summary": "oi",
-      "id": "young-poets-perform"
+      "summary": "test",
+      "id": "thick-rockets-brush"
     }
   ],
   "releases": [
     {
-      "name": "@smfonseca/components",
+      "name": "@smfonseca/tokens",
       "type": "patch",
-      "oldVersion": "4.2.12",
+      "oldVersion": "1.0.5",
       "changesets": [
-        "young-poets-perform"
+        "thick-rockets-brush"
       ],
-      "newVersion": "4.2.13"
+      "newVersion": "1.0.6"
     }
   ]
 }
