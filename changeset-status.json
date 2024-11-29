@@ -4,22 +4,59 @@
       "releases": [
         {
           "name": "@smfonseca/components",
+          "type": "major"
+        },
+        {
+          "name": "@smfonseca/tokens",
           "type": "minor"
+        },
+        {
+          "name": "@smfonseca/docs",
+          "type": "patch"
         }
       ],
-      "summary": "This makes a small change to components.\n\n- change 1\n- change 2\n- change 3",
-      "id": "strange-boats-rush"
+      "summary": "Bump all three packages",
+      "id": "tidy-turtles-appear"
+    },
+    {
+      "releases": [
+        {
+          "name": "@smfonseca/tokens",
+          "type": "patch"
+        }
+      ],
+      "summary": "patch tokens",
+      "id": "tough-games-grow"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
-      "type": "minor",
-      "oldVersion": "5.0.0",
+      "type": "major",
+      "oldVersion": "5.1.0",
       "changesets": [
-        "strange-boats-rush"
+        "tidy-turtles-appear"
       ],
-      "newVersion": "5.1.0"
+      "newVersion": "6.0.0"
+    },
+    {
+      "name": "@smfonseca/tokens",
+      "type": "minor",
+      "oldVersion": "1.1.0",
+      "changesets": [
+        "tidy-turtles-appear",
+        "tough-games-grow"
+      ],
+      "newVersion": "1.2.0"
+    },
+    {
+      "name": "@smfonseca/docs",
+      "type": "patch",
+      "oldVersion": "3.7.0",
+      "changesets": [
+        "tidy-turtles-appear"
+      ],
+      "newVersion": "3.7.1"
     }
   ]
 }

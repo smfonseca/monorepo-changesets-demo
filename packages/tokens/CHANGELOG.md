@@ -1,5 +1,15 @@
 # @smfonseca/tokens
 
+## 1.2.0
+
+### Minor Changes
+
+- [#75](https://github.com/smfonseca/monorepo-changesets-demo/pull/75) [`08ca4de`](https://github.com/smfonseca/monorepo-changesets-demo/commit/08ca4de2f8936ddfde7d3463e2c51adbf3aaf5f6) Thanks [@smfonseca](https://github.com/smfonseca)! - Bump all three packages
+
+### Patch Changes
+
+- [#75](https://github.com/smfonseca/monorepo-changesets-demo/pull/75) [`08ca4de`](https://github.com/smfonseca/monorepo-changesets-demo/commit/08ca4de2f8936ddfde7d3463e2c51adbf3aaf5f6) Thanks [@smfonseca](https://github.com/smfonseca)! - patch tokens
+
 ## 1.1.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/docs
 
+## 3.7.1
+
+### Patch Changes
+
+- [#75](https://github.com/smfonseca/monorepo-changesets-demo/pull/75) [`08ca4de`](https://github.com/smfonseca/monorepo-changesets-demo/commit/08ca4de2f8936ddfde7d3463e2c51adbf3aaf5f6) Thanks [@smfonseca](https://github.com/smfonseca)! - Bump all three packages
+
 ## 3.7.0
 
 ### Minor Changes
