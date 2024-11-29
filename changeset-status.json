@@ -8,18 +8,18 @@
         }
       ],
       "summary": "test",
-      "id": "grumpy-turtles-pump"
+      "id": "neat-feet-happen"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "4.2.18",
+      "oldVersion": "4.2.19",
       "changesets": [
-        "grumpy-turtles-pump"
+        "neat-feet-happen"
       ],
-      "newVersion": "4.2.19"
+      "newVersion": "4.2.20"
     }
   ]
 }
