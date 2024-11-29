@@ -8,18 +8,18 @@
         }
       ],
       "summary": "test",
-      "id": "thin-ducks-peel"
+      "id": "wet-fans-jog"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "4.2.13",
+      "oldVersion": "4.2.14",
       "changesets": [
-        "thin-ducks-peel"
+        "wet-fans-jog"
       ],
-      "newVersion": "4.2.14"
+      "newVersion": "4.2.15"
     }
   ]
 }
