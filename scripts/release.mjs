@@ -85,19 +85,14 @@ async function main() {
       return;
     }
 
-    const releaseNotesByPackage = [];
-    updatedChangelogs.split('\n').forEach((changelogPath) => {
-      const packageName = path.basename(path.dirname(changelogPath));
-      const changelogContent = fs.readFileSync(changelogPath, 'utf-8');
-      const latestEntry = changelogContent.split('## ')[1]?.split('## ')[0]?.trim();
+    const releaseNotesByPackage = updatedChangelogs
+      .split('\n')
+      .map((changelog) => {
+        const packageName = changelog.split('/')[0];
+        const notes = `Please refer to [CHANGELOG.md](https://solid-design-system.fe.union-investment.de/docs/?path=/docs/packages-${packageName}-changelog--docs) for details.`;
 
-      if (latestEntry) {
-        releaseNotesByPackage.push({
-          packageName,
-          notes: latestEntry,
-        });
-      }
-    });
+        return { packageName, notes };
+      });
 
     console.log('Creating GitHub Releases...');
     const tags = execSync('git tag --points-at HEAD', { encoding: 'utf-8' }).trim().split('\n');
