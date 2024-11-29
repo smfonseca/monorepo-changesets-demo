@@ -8,18 +8,18 @@
         }
       ],
       "summary": "test",
-      "id": "clean-ligers-breathe"
+      "id": "grumpy-turtles-pump"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "4.2.17",
+      "oldVersion": "4.2.18",
       "changesets": [
-        "clean-ligers-breathe"
+        "grumpy-turtles-pump"
       ],
-      "newVersion": "4.2.18"
+      "newVersion": "4.2.19"
     }
   ]
 }
