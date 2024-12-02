@@ -1,5 +1,13 @@
 # @monorepo-changesets-demo/components
 
+## 6.1.1
+
+### Patch Changes
+
+- First changeset summary _[`#78`](https://github.com/smfonseca/monorepo-changesets-demo/pull/78) [`23849f7`](https://github.com/smfonseca/monorepo-changesets-demo/commit/23849f70f0bc36a74ec81cf320cd6a2e8a5b6144) [@smfonseca](https://github.com/smfonseca)_
+- Second changeset summary _[`#78`](https://github.com/smfonseca/monorepo-changesets-demo/pull/78) [`23849f7`](https://github.com/smfonseca/monorepo-changesets-demo/commit/23849f70f0bc36a74ec81cf320cd6a2e8a5b6144) [@smfonseca](https://github.com/smfonseca)_
+- Docs + components changeset summary _[`#78`](https://github.com/smfonseca/monorepo-changesets-demo/pull/78) [`23849f7`](https://github.com/smfonseca/monorepo-changesets-demo/commit/23849f70f0bc36a74ec81cf320cd6a2e8a5b6144) [@smfonseca](https://github.com/smfonseca)_
+
 ## 6.1.0
 
 ### Minor Changes
