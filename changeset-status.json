@@ -7,18 +7,8 @@
           "type": "patch"
         }
       ],
-      "summary": "first changeset summary",
-      "id": "beige-bats-pull"
-    },
-    {
-      "releases": [
-        {
-          "name": "@smfonseca/tokens",
-          "type": "patch"
-        }
-      ],
-      "summary": "tokens changeset",
-      "id": "fresh-shoes-learn"
+      "summary": "third summary\n\n- option 1\n- option 2",
+      "id": "great-windows-divide"
     },
     {
       "releases": [
@@ -27,53 +17,31 @@
           "type": "patch"
         }
       ],
-      "summary": "second changeset summary",
-      "id": "honest-readers-double"
+      "summary": "second summary with options\n\n- option 1\n- option 2\n- option 3",
+      "id": "itchy-feet-doubt"
     },
     {
       "releases": [
         {
           "name": "@smfonseca/components",
           "type": "patch"
-        },
-        {
-          "name": "@smfonseca/docs",
-          "type": "patch"
         }
       ],
-      "summary": "docs + components changeset summary",
-      "id": "strong-knives-visit"
+      "summary": "first summmary",
+      "id": "lucky-wasps-greet"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "6.1.0",
+      "oldVersion": "6.1.1",
       "changesets": [
-        "beige-bats-pull",
-        "honest-readers-double",
-        "strong-knives-visit"
+        "great-windows-divide",
+        "itchy-feet-doubt",
+        "lucky-wasps-greet"
       ],
-      "newVersion": "6.1.1"
-    },
-    {
-      "name": "@smfonseca/tokens",
-      "type": "patch",
-      "oldVersion": "1.2.0",
-      "changesets": [
-        "fresh-shoes-learn"
-      ],
-      "newVersion": "1.2.1"
-    },
-    {
-      "name": "@smfonseca/docs",
-      "type": "patch",
-      "oldVersion": "3.7.1",
-      "changesets": [
-        "strong-knives-visit"
-      ],
-      "newVersion": "3.7.2"
+      "newVersion": "6.1.2"
     }
   ]
 }

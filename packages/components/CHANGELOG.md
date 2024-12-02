@@ -1,5 +1,22 @@
 # @monorepo-changesets-demo/components
 
+## 6.1.2
+
+### Patch Changes
+
+- Third summary _[`#79`](https://github.com/smfonseca/monorepo-changesets-demo/pull/79) [`da556fb`](https://github.com/smfonseca/monorepo-changesets-demo/commit/da556fbe02fc510dcae3ea6691ad3853d7c24562) [@smfonseca](https://github.com/smfonseca)_
+
+  - option 1
+  - option 2
+
+- Second summary with options _[`#79`](https://github.com/smfonseca/monorepo-changesets-demo/pull/79) [`da556fb`](https://github.com/smfonseca/monorepo-changesets-demo/commit/da556fbe02fc510dcae3ea6691ad3853d7c24562) [@smfonseca](https://github.com/smfonseca)_
+
+  - option 1
+  - option 2
+  - option 3
+
+- First summmary _[`#79`](https://github.com/smfonseca/monorepo-changesets-demo/pull/79) [`da556fb`](https://github.com/smfonseca/monorepo-changesets-demo/commit/da556fbe02fc510dcae3ea6691ad3853d7c24562) [@smfonseca](https://github.com/smfonseca)_
+
 ## 6.1.1
 
 ### Patch Changes
