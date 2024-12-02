@@ -4,22 +4,22 @@
       "releases": [
         {
           "name": "@smfonseca/components",
-          "type": "patch"
+          "type": "minor"
         }
       ],
-      "summary": "test",
-      "id": "big-stingrays-float"
+      "summary": "This is a test\n\n- option 1\n- option 2\n- option 3",
+      "id": "happy-falcons-tan"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
-      "type": "patch",
-      "oldVersion": "6.0.2",
+      "type": "minor",
+      "oldVersion": "6.0.3",
       "changesets": [
-        "big-stingrays-float"
+        "happy-falcons-tan"
       ],
-      "newVersion": "6.0.3"
+      "newVersion": "6.1.0"
     }
   ]
 }

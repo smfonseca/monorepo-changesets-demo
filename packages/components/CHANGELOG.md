@@ -1,5 +1,15 @@
 # @monorepo-changesets-demo/components
 
+## 6.1.0
+
+### Minor Changes
+
+- This is a test _[`#77`](https://github.com/smfonseca/monorepo-changesets-demo/pull/77) [`322a1ea`](https://github.com/smfonseca/monorepo-changesets-demo/commit/322a1ea456956b2eb3b92b7ff2401aaf9650c045) [@smfonseca](https://github.com/smfonseca)_
+
+  - option 1
+  - option 2
+  - option 3
+
 ## 6.0.3
 
 ### Patch Changes
