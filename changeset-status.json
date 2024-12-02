@@ -8,18 +8,18 @@
         }
       ],
       "summary": "test",
-      "id": "orange-masks-mix"
+      "id": "big-stingrays-float"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "6.0.1",
+      "oldVersion": "6.0.2",
       "changesets": [
-        "orange-masks-mix"
+        "big-stingrays-float"
       ],
-      "newVersion": "6.0.2"
+      "newVersion": "6.0.3"
     }
   ]
 }
