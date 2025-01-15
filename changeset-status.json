@@ -7,8 +7,8 @@
           "type": "patch"
         }
       ],
-      "summary": "third summary\n\n- option 1\n- option 2",
-      "id": "great-windows-divide"
+      "summary": "test",
+      "id": "little-zebras-flow"
     },
     {
       "releases": [
@@ -17,31 +17,20 @@
           "type": "patch"
         }
       ],
-      "summary": "second summary with options\n\n- option 1\n- option 2\n- option 3",
-      "id": "itchy-feet-doubt"
-    },
-    {
-      "releases": [
-        {
-          "name": "@smfonseca/components",
-          "type": "patch"
-        }
-      ],
-      "summary": "first summmary",
-      "id": "lucky-wasps-greet"
+      "summary": "test",
+      "id": "shaggy-files-care"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "6.1.1",
+      "oldVersion": "6.1.2",
       "changesets": [
-        "great-windows-divide",
-        "itchy-feet-doubt",
-        "lucky-wasps-greet"
+        "little-zebras-flow",
+        "shaggy-files-care"
       ],
-      "newVersion": "6.1.2"
+      "newVersion": "6.1.3"
     }
   ]
 }
