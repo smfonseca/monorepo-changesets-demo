@@ -7,30 +7,19 @@
           "type": "patch"
         }
       ],
-      "summary": "test",
-      "id": "little-zebras-flow"
-    },
-    {
-      "releases": [
-        {
-          "name": "@smfonseca/components",
-          "type": "patch"
-        }
-      ],
-      "summary": "test",
-      "id": "shaggy-files-care"
+      "summary": "test release notes",
+      "id": "twenty-singers-deny"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "6.1.2",
+      "oldVersion": "6.1.3",
       "changesets": [
-        "little-zebras-flow",
-        "shaggy-files-care"
+        "twenty-singers-deny"
       ],
-      "newVersion": "6.1.3"
+      "newVersion": "6.1.4"
     }
   ]
 }
