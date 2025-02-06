@@ -29,6 +29,8 @@ importers:
 
   packages/docs: {}
 
+  packages/test: {}
+
   packages/tokens: {}
 
 packages:

@@ -3,23 +3,23 @@
     {
       "releases": [
         {
-          "name": "@smfonseca/components",
-          "type": "patch"
+          "name": "@smfonseca/test",
+          "type": "major"
         }
       ],
-      "summary": "test release notes",
-      "id": "twenty-singers-deny"
+      "summary": "test first release\nsdsdsd",
+      "id": "forty-steaks-greet"
     }
   ],
   "releases": [
     {
-      "name": "@smfonseca/components",
-      "type": "patch",
-      "oldVersion": "6.1.3",
+      "name": "@smfonseca/test",
+      "type": "major",
+      "oldVersion": "1.0.0",
       "changesets": [
-        "twenty-singers-deny"
+        "forty-steaks-greet"
       ],
-      "newVersion": "6.1.4"
+      "newVersion": "2.0.0"
     }
   ]
 }
