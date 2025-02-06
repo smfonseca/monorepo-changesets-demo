@@ -1,0 +1,10 @@
+{
+  "name": "@smfonseca/test",
+  "repository": "https://github.com/smfonseca/monorepo-changesets-demo.git",
+  "description": "Test package for the monorepo-changesets-demo",
+  "version": "1.0.0",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}
