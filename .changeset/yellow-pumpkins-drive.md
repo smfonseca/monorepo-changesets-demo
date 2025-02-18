@@ -1,5 +1,0 @@
----
-"@smfonseca/components": patch
----
-
-cleanup

@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/components
 
+## 6.1.6
+
+### Patch Changes
+
+- Cleanup _[`#86`](https://github.com/smfonseca/monorepo-changesets-demo/pull/86) [`658ade8`](https://github.com/smfonseca/monorepo-changesets-demo/commit/658ade8f976698c356adf2eddb8502e77d9b29c6) [@smfonseca](https://github.com/smfonseca)_
+
 ## 6.1.5
 
 ### Patch Changes
