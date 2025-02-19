@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/components
 
+## 6.2.0
+
+### Minor Changes
+
+- Demo _[`#88`](https://github.com/smfonseca/monorepo-changesets-demo/pull/88) [`40eca2d`](https://github.com/smfonseca/monorepo-changesets-demo/commit/40eca2d827b922af60163587530a6140a882edad) [@smfonseca](https://github.com/smfonseca)_
+
 ## 6.1.6
 
 ### Patch Changes
