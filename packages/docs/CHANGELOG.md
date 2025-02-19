@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/docs
 
+## 3.7.3
+
+### Patch Changes
+
+- Demo 2 _[`#88`](https://github.com/smfonseca/monorepo-changesets-demo/pull/88) [`40eca2d`](https://github.com/smfonseca/monorepo-changesets-demo/commit/40eca2d827b922af60163587530a6140a882edad) [@smfonseca](https://github.com/smfonseca)_
+
 ## 3.7.4
 
 ### Patch Changes
