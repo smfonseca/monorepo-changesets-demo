@@ -8,18 +8,18 @@
         }
       ],
       "summary": "test",
-      "id": "shy-steaks-work"
+      "id": "curly-pens-hammer"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "6.2.0",
+      "oldVersion": "6.2.1",
       "changesets": [
-        "shy-steaks-work"
+        "curly-pens-hammer"
       ],
-      "newVersion": "6.2.1"
+      "newVersion": "6.2.2"
     }
   ]
 }
