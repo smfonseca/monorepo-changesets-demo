@@ -68,9 +68,9 @@ async function main() {
     execSync('git push origin main', { stdio: 'inherit' });
 
     console.log('Publishing to NPM...');
-    execSync(`pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"`, { stdio: 'inherit' });
-    execSync('pnpm changeset publish -r', { stdio: 'inherit' });
+    // execSync(`pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"`, { stdio: 'inherit' });
     // execSync('pnpm changeset publish -r', { stdio: 'inherit' });
+    execSync('pnpm changeset publish -r', { stdio: 'inherit' });
 
     console.log('Pushing tags...');
     execSync('git push --tags', { stdio: 'inherit' });
