@@ -7,19 +7,19 @@
           "type": "patch"
         }
       ],
-      "summary": "testeee",
-      "id": "wise-knives-design"
+      "summary": "teste",
+      "id": "ten-pandas-judge"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "6.2.4",
+      "oldVersion": "6.2.5",
       "changesets": [
-        "wise-knives-design"
+        "ten-pandas-judge"
       ],
-      "newVersion": "6.2.5"
+      "newVersion": "6.2.6"
     }
   ]
 }
