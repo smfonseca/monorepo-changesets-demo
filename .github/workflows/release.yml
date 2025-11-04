@@ -85,8 +85,7 @@ permissions:
   id-token: write
 
 env:
-  GH_TOKEN: ${{ secrets.CHANGESET_GH }}
-  # NPM_TOKEN: ${{ secrets.NPM_RELEASE_TOKEN_MARIO_HAMANN }}
+  GITHUB_TOKEN: ${{ secrets.CHANGESET_GH }}
 
 jobs:
   release:
