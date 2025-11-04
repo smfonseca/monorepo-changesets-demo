@@ -3,23 +3,23 @@
     {
       "releases": [
         {
-          "name": "@smfonseca/test",
-          "type": "major"
+          "name": "@smfonseca/components",
+          "type": "patch"
         }
       ],
-      "summary": "test first release\nsdsdsd",
-      "id": "forty-steaks-greet"
+      "summary": "test",
+      "id": "shy-steaks-work"
     }
   ],
   "releases": [
     {
-      "name": "@smfonseca/test",
-      "type": "major",
-      "oldVersion": "1.0.0",
+      "name": "@smfonseca/components",
+      "type": "patch",
+      "oldVersion": "6.2.0",
       "changesets": [
-        "forty-steaks-greet"
+        "shy-steaks-work"
       ],
-      "newVersion": "2.0.0"
+      "newVersion": "6.2.1"
     }
   ]
 }

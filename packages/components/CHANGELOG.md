@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/components
 
+## 6.2.1
+
+### Patch Changes
+
+- Test _[`0acabff`](https://github.com/smfonseca/monorepo-changesets-demo/commit/0acabffb873cbbea70661c26f976287cda4bf4bc) [@github-actions[bot]](https://github.com/github-actions%5Bbot%5D)_
+
 ## 6.2.0
 
 ### Minor Changes
