@@ -7,19 +7,19 @@
           "type": "patch"
         }
       ],
-      "summary": "teste",
-      "id": "ten-pandas-judge"
+      "summary": "testee",
+      "id": "early-dryers-rush"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "6.2.5",
+      "oldVersion": "6.2.6",
       "changesets": [
-        "ten-pandas-judge"
+        "early-dryers-rush"
       ],
-      "newVersion": "6.2.6"
+      "newVersion": "6.2.7"
     }
   ]
 }
