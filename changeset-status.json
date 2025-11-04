@@ -5,21 +5,34 @@
         {
           "name": "@smfonseca/components",
           "type": "patch"
+        },
+        {
+          "name": "@smfonseca/tokens",
+          "type": "patch"
         }
       ],
-      "summary": "test",
-      "id": "curly-pens-hammer"
+      "summary": "test 3",
+      "id": "six-bugs-live"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "6.2.1",
+      "oldVersion": "6.2.2",
       "changesets": [
-        "curly-pens-hammer"
+        "six-bugs-live"
       ],
-      "newVersion": "6.2.2"
+      "newVersion": "6.2.3"
+    },
+    {
+      "name": "@smfonseca/tokens",
+      "type": "patch",
+      "oldVersion": "1.2.1",
+      "changesets": [
+        "six-bugs-live"
+      ],
+      "newVersion": "1.2.2"
     }
   ]
 }
