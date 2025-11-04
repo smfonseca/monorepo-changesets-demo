@@ -7,19 +7,19 @@
           "type": "patch"
         }
       ],
-      "summary": "testee",
-      "id": "early-dryers-rush"
+      "summary": "testete",
+      "id": "eleven-kings-reflect"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "6.2.6",
+      "oldVersion": "6.2.7",
       "changesets": [
-        "early-dryers-rush"
+        "eleven-kings-reflect"
       ],
-      "newVersion": "6.2.7"
+      "newVersion": "6.2.8"
     }
   ]
 }
