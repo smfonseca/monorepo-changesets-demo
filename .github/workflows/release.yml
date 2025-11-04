@@ -104,9 +104,8 @@ jobs:
 
       - uses: pnpm/action-setup@v4
         name: Install pnpm
-        id: pnpm-install
         with:
-            run_install: false
+          version: latest
 
       - name: Install dependencies
         run: pnpm i
