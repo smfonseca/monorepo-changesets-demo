@@ -8,12 +8,13 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
+  id-token: write
+  # pull-requests: write
 
 env:
   GITHUB_TOKEN: ${{ secrets.CHANGESET_GH }}
   # GITHUB_FREEZE: ${{ secrets.CODE_FREEZE }}
-  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 jobs:
   release:
@@ -66,7 +67,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: yarn release
+          publish: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
