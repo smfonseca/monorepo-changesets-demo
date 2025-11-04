@@ -7,19 +7,19 @@
           "type": "patch"
         }
       ],
-      "summary": "testee",
-      "id": "friendly-beers-pump"
+      "summary": "testeee",
+      "id": "wise-knives-design"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "6.2.3",
+      "oldVersion": "6.2.4",
       "changesets": [
-        "friendly-beers-pump"
+        "wise-knives-design"
       ],
-      "newVersion": "6.2.4"
+      "newVersion": "6.2.5"
     }
   ]
 }
