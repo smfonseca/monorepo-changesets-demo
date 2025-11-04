@@ -1,73 +1,112 @@
-name: 🚀 Release
+# name: 🚀 Release
+
+# on:
+#   push:
+#     branches:
+#       - main
+#   workflow_dispatch:
+
+# permissions:
+#   contents: write
+#   id-token: write
+#   # pull-requests: write
+
+# env:
+#   GITHUB_TOKEN: ${{ secrets.CHANGESET_GH }}
+#   # GITHUB_FREEZE: ${{ secrets.CODE_FREEZE }}
+#   # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+# jobs:
+#   release:
+#     name: 🚀 Release
+#     strategy:
+#       matrix:
+#         os: [ubuntu-latest]
+#         node-version: [lts/*]
+#         pnpm-version: [latest]
+#     runs-on: ${{ matrix.os }}
+#     steps:
+#       - name: ⬇️ Checkout
+#         id: checkout
+#         uses: actions/checkout@v2.3.3
+#         with:
+#           token: ${{ env.GITHUB_TOKEN }}
+#           fetch-depth: 0
+
+#       - name: 🟢 Setup node
+#         id: setup-node
+#         uses: actions/setup-node@v2
+#         with:
+#           node-version: ${{ matrix.node-version }}
+
+#       - name: 🥡 Setup pnpm
+#         id: setup-pnpm
+#         uses: pnpm/action-setup@v2.1.0
+#         with:
+#           version: ${{ matrix.pnpm-version }}
+#           run_install: false
+
+#       - name: 🎈 Get pnpm store directory
+#         id: get-pnpm-cache-dir
+#         run: |
+#           echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+
+#       - name: 🧩 Install Dependencies
+#         id: install-dependencies
+#         run: pnpm install
+
+#       - name: Release
+#         run: pnpm release
+
+#       - name: Create Release Pull Request
+#         uses: changesets/action@v1
+#         env:
+#           GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+
+#       - name: Create Release Pull Request or Publish to npm
+#         id: changesets
+#         uses: changesets/action@v1
+#         with:
+#           publish: pnpm release
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#           # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+name: Release new main version
 
 on:
   push:
     branches:
-      - main
+      - 'main'
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   id-token: write
-  # pull-requests: write
 
 env:
-  GITHUB_TOKEN: ${{ secrets.CHANGESET_GH }}
-  # GITHUB_FREEZE: ${{ secrets.CODE_FREEZE }}
-  # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  GH_TOKEN: ${{ secrets.CHANGESET_GH }}
 
 jobs:
   release:
-    name: 🚀 Release
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node-version: [lts/*]
-        pnpm-version: [latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
-      - name: ⬇️ Checkout
-        id: checkout
-        uses: actions/checkout@v2.3.3
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
-          token: ${{ env.GITHUB_TOKEN }}
           fetch-depth: 0
+          persist-credentials: false
 
-      - name: 🟢 Setup node
-        id: setup-node
-        uses: actions/setup-node@v2
+      - name: Install Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+            node-version: 22
 
-      - name: 🥡 Setup pnpm
-        id: setup-pnpm
-        uses: pnpm/action-setup@v2.1.0
-        with:
-          version: ${{ matrix.pnpm-version }}
-          run_install: false
+      - uses: pnpm/action-setup@v4
 
-      - name: 🎈 Get pnpm store directory
-        id: get-pnpm-cache-dir
-        run: |
-          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-
-      - name: 🧩 Install Dependencies
-        id: install-dependencies
-        run: pnpm install
+      - name: Install dependencies
+        run: pnpm i
 
       - name: Release
-        run: pnpm release
+        run: node ./scripts/release.mjs
 
-      - name: Create Release Pull Request
-        uses: changesets/action@v1
-        env:
-          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
-
-      - name: Create Release Pull Request or Publish to npm
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          publish: pnpm release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
