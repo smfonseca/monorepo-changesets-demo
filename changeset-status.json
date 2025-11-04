@@ -5,34 +5,21 @@
         {
           "name": "@smfonseca/components",
           "type": "patch"
-        },
-        {
-          "name": "@smfonseca/tokens",
-          "type": "patch"
         }
       ],
-      "summary": "test 3",
-      "id": "six-bugs-live"
+      "summary": "testee",
+      "id": "friendly-beers-pump"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "6.2.2",
+      "oldVersion": "6.2.3",
       "changesets": [
-        "six-bugs-live"
+        "friendly-beers-pump"
       ],
-      "newVersion": "6.2.3"
-    },
-    {
-      "name": "@smfonseca/tokens",
-      "type": "patch",
-      "oldVersion": "1.2.1",
-      "changesets": [
-        "six-bugs-live"
-      ],
-      "newVersion": "1.2.2"
+      "newVersion": "6.2.4"
     }
   ]
 }
