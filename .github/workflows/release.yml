@@ -86,6 +86,7 @@ permissions:
 
 env:
   GH_TOKEN: ${{ secrets.CHANGESET_GH }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 jobs:
   release:
@@ -111,5 +112,5 @@ jobs:
         run: pnpm i
 
       - name: Release
-        run: node ./scripts/release.mjs
+        run: GH_TOKEN=${{secrets.CHANGESET_GH}} NPM_TOKEN=${{secrets.NPM_TOKEN}} node ./scripts/release.mjs
 
