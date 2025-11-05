@@ -1,0 +1,40 @@
+{
+  "changesets": [
+    {
+      "releases": [
+        {
+          "name": "@smfonseca/components",
+          "type": "patch"
+        }
+      ],
+      "summary": "testeee",
+      "id": "kind-bags-worry"
+    }
+  ],
+  "releases": [
+    {
+      "name": "@smfonseca/components",
+      "type": "patch",
+      "oldVersion": "6.2.13-next.1",
+      "changesets": [
+        "kind-bags-worry"
+      ],
+      "newVersion": "6.2.13-next.2"
+    }
+  ],
+  "preState": {
+    "mode": "pre",
+    "tag": "next",
+    "initialVersions": {
+      "@smfonseca/components": "6.2.12",
+      "@smfonseca/docs": "3.7.3"
+    },
+    "changesets": [
+      "fuzzy-spies-press",
+      "kind-bags-worry",
+      "nice-apes-love",
+      "nice-ladybugs-do",
+      "weak-apples-hear"
+    ]
+  }
+}
