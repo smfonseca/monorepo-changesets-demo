@@ -1,0 +1,14 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@smfonseca/components": "6.2.12",
+    "@smfonseca/docs": "3.7.3"
+  },
+  "changesets": [
+    "fuzzy-spies-press",
+    "nice-apes-love",
+    "nice-ladybugs-do",
+    "weak-apples-hear"
+  ]
+}
