@@ -7,19 +7,19 @@
           "type": "patch"
         }
       ],
-      "summary": "testete",
-      "id": "eleven-kings-reflect"
+      "summary": "teste",
+      "id": "sour-ladybugs-explain"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "6.2.7",
+      "oldVersion": "6.2.8",
       "changesets": [
-        "eleven-kings-reflect"
+        "sour-ladybugs-explain"
       ],
-      "newVersion": "6.2.8"
+      "newVersion": "6.2.9"
     }
   ]
 }
