@@ -80,10 +80,10 @@ async function main() {
     execSync('git push --tags', { stdio: 'inherit' });
 
     console.log('Generating Release Notes...');
-    // const releaseNotesByPackage = sortedPackages.map(pkg => {
-    //   const notes = `Please refer to [CHANGELOG](https://solid-design-system.fe.union-investment.de/docs/?path=/docs/packages-${pkg.name}-changelog--docs) for details.`;
-    //   return { packageName: pkg.name, notes };
-    // });
+    const releaseNotesByPackage = sortedPackages.map(pkg => {
+      const notes = `Please refer to [CHANGELOG]`;
+      return { packageName: pkg.name, notes };
+    });
 
     console.log('Creating GitHub Releases...');
     const tags = execSync('git tag --points-at HEAD', { encoding: 'utf-8' }).trim().split('\n');
