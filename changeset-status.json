@@ -8,18 +8,18 @@
         }
       ],
       "summary": "teste",
-      "id": "good-roses-repeat"
+      "id": "nasty-penguins-boil"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "6.2.10",
+      "oldVersion": "6.2.11",
       "changesets": [
-        "good-roses-repeat"
+        "nasty-penguins-boil"
       ],
-      "newVersion": "6.2.11"
+      "newVersion": "6.2.12"
     }
   ]
 }
