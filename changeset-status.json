@@ -1,6 +1,11 @@
 {
   "changesets": [
     {
+      "releases": [],
+      "summary": "",
+      "id": "fuzzy-spies-press"
+    },
+    {
       "releases": [
         {
           "name": "@smfonseca/components",
@@ -9,21 +14,59 @@
       ],
       "summary": "testeee",
       "id": "kind-bags-worry"
+    },
+    {
+      "releases": [],
+      "summary": "",
+      "id": "nice-apes-love"
+    },
+    {
+      "releases": [
+        {
+          "name": "@smfonseca/components",
+          "type": "patch"
+        }
+      ],
+      "summary": "teste next 2",
+      "id": "nice-ladybugs-do"
+    },
+    {
+      "releases": [
+        {
+          "name": "@smfonseca/components",
+          "type": "patch"
+        }
+      ],
+      "summary": "teste",
+      "id": "strong-dragons-sniff"
+    },
+    {
+      "releases": [
+        {
+          "name": "@smfonseca/components",
+          "type": "patch"
+        }
+      ],
+      "summary": "next",
+      "id": "weak-apples-hear"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "6.2.13-next.1",
+      "oldVersion": "6.2.13-next.2",
       "changesets": [
-        "kind-bags-worry"
+        "kind-bags-worry",
+        "nice-ladybugs-do",
+        "strong-dragons-sniff",
+        "weak-apples-hear"
       ],
-      "newVersion": "6.2.13-next.2"
+      "newVersion": "6.2.13"
     }
   ],
   "preState": {
-    "mode": "pre",
+    "mode": "exit",
     "tag": "next",
     "initialVersions": {
       "@smfonseca/components": "6.2.12",
@@ -34,6 +77,7 @@
       "kind-bags-worry",
       "nice-apes-love",
       "nice-ladybugs-do",
+      "strong-dragons-sniff",
       "weak-apples-hear"
     ]
   }

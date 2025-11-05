@@ -1,5 +1,14 @@
 # @monorepo-changesets-demo/components
 
+## 6.2.13
+
+### Patch Changes
+
+- Testeee _[`ffcac38`](https://github.com/smfonseca/monorepo-changesets-demo/commit/ffcac388def0eea14a295a5c3a59765bc89a6558) [@github-actions[bot]](https://github.com/github-actions%5Bbot%5D)_
+- Teste next 2 _[`#91`](https://github.com/smfonseca/monorepo-changesets-demo/pull/91) [`e33fdef`](https://github.com/smfonseca/monorepo-changesets-demo/commit/e33fdef6b89c3a8486f404689296b68118765b96) [@smfonseca](https://github.com/smfonseca)_
+- Teste _[`0d98b6d`](https://github.com/smfonseca/monorepo-changesets-demo/commit/0d98b6d60792bb284beb9df525420649012b552f) [@github-actions[bot]](https://github.com/github-actions%5Bbot%5D)_
+- Next _[`#91`](https://github.com/smfonseca/monorepo-changesets-demo/pull/91) [`b709945`](https://github.com/smfonseca/monorepo-changesets-demo/commit/b7099456813bc7c3fd6f10a6b926312dba992474) [@smfonseca](https://github.com/smfonseca)_
+
 ## 6.2.13-next.2
 
 ### Patch Changes
