@@ -6,7 +6,9 @@
     "@smfonseca/docs": "3.7.3"
   },
   "changesets": [
+    "fuzzy-spies-press",
     "nice-apes-love",
+    "nice-ladybugs-do",
     "weak-apples-hear"
   ]
 }

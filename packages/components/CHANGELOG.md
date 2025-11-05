@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/components
 
+## 6.2.13-next.1
+
+### Patch Changes
+
+- Teste next 2 _[`e33fdef`](https://github.com/smfonseca/monorepo-changesets-demo/commit/e33fdef6b89c3a8486f404689296b68118765b96) [@github-actions[bot]](https://github.com/github-actions%5Bbot%5D)_
+
 ## 6.2.13-next.0
 
 ### Patch Changes
