@@ -7,19 +7,19 @@
           "type": "patch"
         }
       ],
-      "summary": "teste",
-      "id": "sour-ladybugs-explain"
+      "summary": "testette",
+      "id": "rude-knives-refuse"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "6.2.8",
+      "oldVersion": "6.2.9",
       "changesets": [
-        "sour-ladybugs-explain"
+        "rude-knives-refuse"
       ],
-      "newVersion": "6.2.9"
+      "newVersion": "6.2.10"
     }
   ]
 }

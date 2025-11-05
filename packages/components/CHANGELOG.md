@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/components
 
+## 6.2.10
+
+### Patch Changes
+
+- Testette _[`c8b56b5`](https://github.com/smfonseca/monorepo-changesets-demo/commit/c8b56b5873f915f274432c720ec68e9c42ec30c6) [@github-actions[bot]](https://github.com/github-actions%5Bbot%5D)_
+
 ## 6.2.9
 
 ### Patch Changes
