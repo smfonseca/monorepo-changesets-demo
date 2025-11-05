@@ -5,5 +5,8 @@
     "@smfonseca/components": "6.2.12",
     "@smfonseca/docs": "3.7.3"
   },
-  "changesets": []
+  "changesets": [
+    "nice-apes-love",
+    "weak-apples-hear"
+  ]
 }

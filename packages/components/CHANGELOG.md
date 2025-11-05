@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/components
 
+## 6.2.13-next.0
+
+### Patch Changes
+
+- Next _[`b709945`](https://github.com/smfonseca/monorepo-changesets-demo/commit/b7099456813bc7c3fd6f10a6b926312dba992474) [@github-actions[bot]](https://github.com/github-actions%5Bbot%5D)_
+
 ## 6.2.12
 
 ### Patch Changes
