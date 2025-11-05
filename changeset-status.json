@@ -7,19 +7,19 @@
           "type": "patch"
         }
       ],
-      "summary": "testette",
-      "id": "rude-knives-refuse"
+      "summary": "teste",
+      "id": "good-roses-repeat"
     }
   ],
   "releases": [
     {
       "name": "@smfonseca/components",
       "type": "patch",
-      "oldVersion": "6.2.9",
+      "oldVersion": "6.2.10",
       "changesets": [
-        "rude-knives-refuse"
+        "good-roses-repeat"
       ],
-      "newVersion": "6.2.10"
+      "newVersion": "6.2.11"
     }
   ]
 }
