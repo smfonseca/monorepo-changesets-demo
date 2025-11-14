@@ -32,8 +32,8 @@ async function main() {
     const updatedVersions = [];
 
     const changedFiles = execSync('git diff --name-only', { encoding: 'utf-8' })
-    .split('\n')
-    .filter((file) => file.includes('package.json'));
+      .split('\n')
+      .filter((file) => file.includes('package.json'));
 
     changedFiles.forEach((file) => {
       const packageJsonPath = path.resolve(file);
@@ -67,10 +67,10 @@ async function main() {
     console.log('Pushing changes to main...');
     execSync('git push origin main', { stdio: 'inherit' });
 
-    console.log('Publishing to NPM...');
+    // console.log('Publishing to NPM...');
     // execSync(`pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"`, { stdio: 'inherit' });
     // execSync('pnpm changeset publish -r', { stdio: 'inherit' });
-    execSync('pnpm changeset publish -r', { stdio: 'inherit' });
+    // execSync('pnpm changeset publish -r', { stdio: 'inherit' });
 
     console.log('Pushing tags...');
     execSync('git push --tags', { stdio: 'inherit' });

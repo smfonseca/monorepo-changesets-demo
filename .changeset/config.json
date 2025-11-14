@@ -7,7 +7,7 @@
     }
   ],
   "commit": false,
-  "fixed": [],
+  "fixed": [["@smfonseca/docs", "@smfonseca/components"]],
   "linked": [],
   "access": "public",
   "baseBranch": "main",
