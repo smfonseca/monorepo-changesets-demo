@@ -1,5 +1,7 @@
 # @monorepo-changesets-demo/components
 
+## 6.3.0
+
 ## 6.2.13
 
 ### Patch Changes

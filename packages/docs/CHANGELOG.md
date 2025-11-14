@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/docs
 
+## 6.3.0
+
+### Minor Changes
+
+- Sync packages versions _[`#92`](https://github.com/smfonseca/monorepo-changesets-demo/pull/92) [`d3a492a`](https://github.com/smfonseca/monorepo-changesets-demo/commit/d3a492a68463a01b20cfc01ce589b2938216d03f) [@paulovareiro29](https://github.com/paulovareiro29)_
+
 ## 3.7.3
 
 ### Patch Changes
