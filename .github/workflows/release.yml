@@ -81,7 +81,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   id-token: write
 
 env:
@@ -89,10 +89,9 @@ env:
   # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 jobs:
-  # publish-main:
-  release:
-    # name: Publish stable from main
-    # if: github.ref == 'refs/heads/main'
+  publish-main:
+    name: Publish stable from main
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -122,7 +121,7 @@ jobs:
         run: pnpm i
 
       - name: Release
-        run: GITHUB_TOKEN=${{ secrets.CHANGESET_GH }} node ./scripts/release.mjs
+        run: node ./scripts/release.mjs
 
   # publish-next:
   #   name: Publish prerelease from next
