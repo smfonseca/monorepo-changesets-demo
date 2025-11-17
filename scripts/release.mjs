@@ -181,7 +181,7 @@ async function main() {
     fs.unlinkSync('changeset-status.json');
 
     console.log('Applying Changesets...');
-    execSync(`GITHUB_TOKEN=${ GH_TOKEN } pnpm changeset version`, { stdio: 'inherit' });
+    execSync(`GITHUB_TOKEN=${ GITHUB_TOKEN } pnpm changeset version`, { stdio: 'inherit' });
 
     console.log('Build packages...');
     execSync('pnpm --recursive --if-present postversion');
