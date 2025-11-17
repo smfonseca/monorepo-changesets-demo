@@ -1,5 +1,7 @@
 # @monorepo-changesets-demo/docs
 
+## 6.3.6
+
 ## 6.3.5
 
 ## 6.3.4

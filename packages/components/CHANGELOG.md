@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/components
 
+## 6.3.6
+
+### Patch Changes
+
+- Test _[`38806a8`](https://github.com/smfonseca/monorepo-changesets-demo/commit/38806a80f99e0d2a981f8f4f4ce7435a66c64efb) [@github-actions[bot]](https://github.com/github-actions%5Bbot%5D)_
+
 ## 6.3.5
 
 ### Patch Changes
