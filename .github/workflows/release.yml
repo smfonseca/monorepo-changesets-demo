@@ -117,7 +117,7 @@ jobs:
         run: pnpm i
 
       - name: Release
-        run: node ./scripts/release.mjs
+        run: GITHUB_TOKEN=${{ secrets.CHANGESET_GH }} node ./scripts/release.mjs
 
   publish-next:
     name: Publish prerelease from next
