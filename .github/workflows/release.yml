@@ -72,13 +72,89 @@
 #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+name: Release new main version
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'next'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+env:
+  GITHUB_TOKEN: ${{ secrets.CHANGESET_GH }}
+
+jobs:
+  # publish-main:
+  release:
+    # name: Publish stable from main
+    # if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+            node-version: 22
+
+      - name: Upgrade npm to latest
+        run: npm i -g npm@latest
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Install dependencies
+        run: pnpm i
+
+      - name: Release
+        run: GITHUB_TOKEN=${{ secrets.CHANGESET_GH }} node ./scripts/release.mjs
+
+  # publish-next:
+  #   name: Publish prerelease from next
+  #   if: github.ref == 'refs/heads/next'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
+
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: 22
+
+  #     - name: Upgrade npm to v11+
+  #       run: npm i -g npm@latest
+
+  #     - name: Setup pnpm
+  #       uses: pnpm/action-setup@v4
+  #       with:
+  #         version: latest
+
+  #     - name: Install dependencies
+  #       run: pnpm install
+
+  #     - name: Release next
+  #       run: node ./scripts/release-next.mjs
+
+
 # name: Release new main version
 
 # on:
 #   push:
 #     branches:
 #       - 'main'
-#       - 'next'
 #   workflow_dispatch:
 
 # permissions:
@@ -88,101 +164,27 @@
 #   GITHUB_TOKEN: ${{ secrets.CHANGESET_GH }}
 
 # jobs:
-#   publish-main:
-#     name: Publish stable from main
-#     if: github.ref == 'refs/heads/main'
+#   release:
 #     runs-on: ubuntu-latest
 #     steps:
 #       - name: Checkout repository
 #         uses: actions/checkout@v4
 #         with:
 #           fetch-depth: 0
-#           persist-credentials: true
+#           persist-credentials: false
 
 #       - name: Install Node.js
 #         uses: actions/setup-node@v4
 #         with:
 #             node-version: 22
 
-#       - name: Upgrade npm to latest
-#         run: npm i -g npm@latest
-
-#       - uses: pnpm/action-setup@v4
-#         with:
-#           version: latest
-
-#       - name: Install dependencies
-#         run: pnpm i
-
-#       - name: Release
-#         run: GITHUB_TOKEN=${{ secrets.CHANGESET_GH }} node ./scripts/release.mjs
-
-#   publish-next:
-#     name: Publish prerelease from next
-#     if: github.ref == 'refs/heads/next'
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v4
-#         with:
-#           fetch-depth: 0
-
-#       - name: Setup Node.js
-#         uses: actions/setup-node@v4
-#         with:
-#           node-version: 22
-
-#       - name: Upgrade npm to v11+
-#         run: npm i -g npm@latest
-
 #       - name: Setup pnpm
 #         uses: pnpm/action-setup@v4
 #         with:
-#           version: latest
+#           version: 10
 
 #       - name: Install dependencies
-#         run: pnpm install
+#         run: PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm i
 
-#       - name: Release next
-#         run: node ./scripts/release-next.mjs
-
-
-name: Release new main version
-
-on:
-  push:
-    branches:
-      - 'main'
-  workflow_dispatch:
-
-permissions:
-  contents: read
-
-env:
-  GITHUB_TOKEN: ${{ secrets.CHANGESET_GH }}
-
-jobs:
-  release:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          persist-credentials: false
-
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-            node-version: 22
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-
-      - name: Install dependencies
-        run: PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm i
-
-      - name: Release
-        run: GITHUB_TOKEN=${{ secrets.CHANGESET_GH }} node ./scripts/release.mjs
+#       - name: Release
+#         run: GITHUB_TOKEN=${{ secrets.CHANGESET_GH }} node ./scripts/release.mjs
