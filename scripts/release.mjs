@@ -140,6 +140,7 @@ import { Octokit } from '@octokit/rest';
 import fs from 'fs';
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const NPM_TOKEN = process.env.NPM_TOKEN;
 
 const octokit = new Octokit({ auth: GITHUB_TOKEN });
 
