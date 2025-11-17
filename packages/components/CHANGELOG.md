@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/components
 
+## 6.3.2
+
+### Patch Changes
+
+- Test _[`e74ba93`](https://github.com/smfonseca/monorepo-changesets-demo/commit/e74ba93bb714846fd3e5ff8b7885aa9b60c2c9a4) [@github-actions[bot]](https://github.com/github-actions%5Bbot%5D)_
+
 ## 6.3.1
 
 ### Patch Changes
