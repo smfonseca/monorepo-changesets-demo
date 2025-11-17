@@ -82,11 +82,11 @@ on:
 
 permissions:
   contents: read
-  # id-token: write
+  id-token: write
 
 env:
   GITHUB_TOKEN: ${{ secrets.CHANGESET_GH }}
-  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 jobs:
   # publish-main:
@@ -122,7 +122,7 @@ jobs:
         run: pnpm i
 
       - name: Release
-        run: GITHUB_TOKEN=${{ secrets.CHANGESET_GH }} NPM_TOKEN=${{secrets.NPM_TOKEN}} node ./scripts/release.mjs
+        run: GITHUB_TOKEN=${{ secrets.CHANGESET_GH }} node ./scripts/release.mjs
 
   # publish-next:
   #   name: Publish prerelease from next
