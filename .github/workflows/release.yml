@@ -100,10 +100,10 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Configure git to use PAT
-        run: |
-          git remote set-url origin "https://github.com/smfonseca/monorepo-changesets-demo.git"
-          git config http.https://github.com/.extraheader "AUTHORIZATION: basic $(printf "x-access-token:%s" "$GITHUB_TOKEN" | base64)"
+      # - name: Configure git to use PAT
+      #   run: |
+      #     git remote set-url origin "https://github.com/smfonseca/monorepo-changesets-demo.git"
+      #     git config http.https://github.com/.extraheader "AUTHORIZATION: basic $(printf "x-access-token:%s" "$GITHUB_TOKEN" | base64)"
 
       - name: Install Node.js
         uses: actions/setup-node@v4
