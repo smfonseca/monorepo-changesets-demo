@@ -13,6 +13,9 @@ async function main() {
     console.log('Generating Changeset status...');
     execSync('pnpm changeset status --output changeset-status.json', { stdio: 'inherit' });
 
+    // log the first 7 charactes of GITHUB_TOKEN for verification
+    console.log('GITHUB_TOKEN:', GITHUB_TOKEN ? GITHUB_TOKEN.substring(0, 8) : 'undefined');
+
     if (!fs.existsSync('changeset-status.json')) {
       console.log('No changeset-status.json found. Exiting.');
       return;
