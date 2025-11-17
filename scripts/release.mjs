@@ -205,6 +205,8 @@ async function main() {
 
     // console.log('Publishing to NPM...');
     // execSync('pnpm changeset publish -r', { stdio: 'inherit' });
+    execSync(`pnpm config set '//registry.npmjs.org/:_authToken' "${ NPM_TOKEN }"`, { stdio: 'inherit' });
+    execSync(`NPM_TOKEN=${ NPM_TOKEN } pnpm changeset publish -r`, { stdio: 'inherit' });
 
     console.log('Pushing tags...');
     execSync('git push --tags', { stdio: 'inherit' });
