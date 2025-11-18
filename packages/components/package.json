@@ -2,7 +2,7 @@
   "name": "@smfonseca/components",
   "repository": "https://github.com/smfonseca/monorepo-changesets-demo.git",
   "description": "Shared components",
-  "version": "6.3.15",
+  "version": "6.3.16",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
