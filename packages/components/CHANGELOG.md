@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/components
 
+## 6.3.12
+
+### Patch Changes
+
+- Test _[`#95`](https://github.com/smfonseca/monorepo-changesets-demo/pull/95) [`9a2d56e`](https://github.com/smfonseca/monorepo-changesets-demo/commit/9a2d56edd77879197a316d4e67d38d9557d1bfc2) [@smfonseca](https://github.com/smfonseca)_
+
 ## 6.3.11
 
 ### Patch Changes
