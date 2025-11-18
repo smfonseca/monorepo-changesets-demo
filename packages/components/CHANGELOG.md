@@ -1,5 +1,11 @@
 # @monorepo-changesets-demo/components
 
+## 6.3.11
+
+### Patch Changes
+
+- Tedt _[`26da9cf`](https://github.com/smfonseca/monorepo-changesets-demo/commit/26da9cff56ff3e205e48b30c02eea211d7ee976b) [@github-actions[bot]](https://github.com/github-actions%5Bbot%5D)_
+
 ## 6.3.10
 
 ### Patch Changes
