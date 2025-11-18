@@ -46,13 +46,13 @@ async function main() {
       }))
       .sort((a, b) => a.name.localeCompare(b.name));
 
-    const packagesWithVersions = sortedPackages.map(pkg => `${pkg.name}@${pkg.version}`).join(', ');
+    const packagesWithVersions = sortedPackages.map(pkg => `${ pkg.name }@${ pkg.version }`).join(', ');
 
     console.log('Removing changeset-status.json...');
     fs.unlinkSync('changeset-status.json');
 
     console.log('Applying Changesets...');
-    execSync(`GITHUB_TOKEN=${GITHUB_TOKEN} pnpm changeset version`, { stdio: 'inherit' });
+    execSync(`GITHUB_TOKEN=${ GITHUB_TOKEN } pnpm changeset version`, { stdio: 'inherit' });
 
     console.log('Build packages...');
     execSync('pnpm --recursive --if-present postversion');
@@ -62,26 +62,26 @@ async function main() {
     execSync('git config user.email "github-actions[bot]@users.noreply.github.com"');
 
     // It is important to remove [skip actions] here, as otherwise we can't merge on main.
-    const commitMessage = `chore(release-next): ${packagesWithVersions}`;
+    const commitMessage = `chore(release-next): ${ packagesWithVersions }`;
 
     execSync('git add .');
-    execSync(`git commit -m "${commitMessage}" || echo "No changes to commit"`, { stdio: 'inherit' });
+    execSync(`git commit -m "${ commitMessage }" || echo "No changes to commit"`, { stdio: 'inherit' });
 
     console.log('Set origin with PAT...');
-    execSync(`git remote set-url origin https://${GITHUB_TOKEN}@github.com/smfonseca/monorepo-changesets-demo.git`);
+    execSync(`git remote set-url origin https://${ GITHUB_TOKEN }@github.com/smfonseca/monorepo-changesets-demo.git`);
 
     console.log('Pushing changes to next...');
     execSync('git push origin next', { stdio: 'inherit' });
 
-    // console.log('Publishing to NPM...');
-    // execSync('pnpm changeset publish -r', { stdio: 'inherit' });
+    console.log('Publishing to NPM...');
+    execSync('pnpm changeset publish -r', { stdio: 'inherit' });
 
     console.log('Pushing tags...');
     execSync('git push --tags', { stdio: 'inherit' });
 
     console.log('Generating Release Notes...');
     const releaseNotesByPackage = sortedPackages.map(pkg => {
-      const notes = `Please refer to [CHANGELOG]`;
+      const notes = `Please refer to [CHANGELOG](https://smfonseca.github.io/monorepo-changesets-demo/?path=/docs/packages-${ pkg.name }-changelog--docs) for details.`;
       return { packageName: pkg.name, notes };
     });
 
@@ -94,11 +94,11 @@ async function main() {
         .join('\n');
 
       if (!releaseNotes) {
-        console.log(`No release notes found for tag ${tag}. Skipping.`);
+        console.log(`No release notes found for tag ${ tag }. Skipping.`);
         continue;
       }
 
-      console.log(`Creating release for ${tag} with notes:`);
+      console.log(`Creating release for ${ tag } with notes:`);
       console.log(releaseNotes);
 
       await octokit.rest.repos.createRelease({

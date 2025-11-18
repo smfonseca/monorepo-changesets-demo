@@ -140,7 +140,7 @@ import { Octokit } from '@octokit/rest';
 import fs from 'fs';
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-const NPM_TOKEN = process.env.NPM_TOKEN;
+// const NPM_TOKEN = process.env.NPM_TOKEN;
 
 const octokit = new Octokit({ auth: GITHUB_TOKEN });
 
@@ -205,7 +205,7 @@ async function main() {
     execSync('git push origin main', { stdio: 'inherit' });
 
     // console.log('Publishing to NPM...');
-    execSync('pnpm changeset publish -r', { stdio: 'inherit' });
+    // execSync('pnpm changeset publish -r', { stdio: 'inherit' });
     // execSync(`pnpm config set '//registry.npmjs.org/:_authToken' "${ NPM_TOKEN }"`, { stdio: 'inherit' });
     // execSync(`NPM_TOKEN=${ NPM_TOKEN } pnpm changeset publish -r`, { stdio: 'inherit' });
 
